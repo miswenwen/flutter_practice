@@ -43,7 +43,7 @@ void testVar() {
 
   //for each
   var teas2 = ['green', 'black', 'chamomile', 'earl grey'];
-  teas2.forEach((tea) => print('I drink $tea'));
+  teas2.forEach((tea) => print('I drink $tea'));//forEach里面是匿名内部类
 
   //where(),any(),every()
   var teas3 = ['green', 'black', 'chamomile', 'earl grey'];

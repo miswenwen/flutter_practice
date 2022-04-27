@@ -4,21 +4,90 @@ void main() {
   testAlterMethod('potter', 30);
 }
 
-/*方法*/
+//一般函数
+void methodZ() {}
+/*
+这里注意，我们在调用methodZ1的时候，如果是methodZ1(true,null)实际编译都不会让过的，因为有非空检查
+只也是为什么后面的可选位置方法要加代表可空的?或者required或者给初始值，
+因为可选位置方法在调用的时候可选参数没有加进去的话默认给的值就是null，只就过不了非空检查，导致编译检查过不了
+ */
+void methodZ1(bool isA, bool isB) {}
 
-void testMethod() {}
-
-//可选参数,注意要加?
-//加个?就可以了，就是告诉编译器这是nullability类型，告诉编译器如果为空，我后面自己会处理的。
-void testAlterMethod(String name, [int? age, String? home]) {
-  print(name + age.toString());
+//匿名内部类
+/*函数体,其实只是没有函数名而已
+([[Type] param1[, …]]) {
+  codeBlock;
+};
+ */
+void methodA() {
+  var list = ['a', 'b', 'c'];
+  list.forEach((str) {
+    print(str);
+  });
 }
 
-/*是=>而不是->;
-没有return关键字
- */
-int testPlus() => 3 + 3;
+//可选参数,分为可选命名参数和可选位置参数
+/*
+注意，可选命名参数和可选位置参数的大前提是它们都是可选参数，也就是说我们在调用方法的时候，可选参数是有默认值的，是null或者我们赋予的初始值
+大部分场景用的是可选命名参数
 
-int testPlus2() {
+由于非空检查：可选参数要加代表可空的？或者required或者赋默认值
+?就是告诉编译器这是nullability类型，告诉编译器如果为空，我后面自己会处理的。
+调用的时候
+  methodB3('Hi');
+  methodB3('Hi',isA: true);
+  methodB3('Hi',isB: true);
+  methodB3('Hi',isA: true,isB: false);
+ */
+//可选命名参数
+void methodB({bool? isA, bool? isB}) {}
+
+void methodB1({required bool isA, required bool isB}) {}
+
+void methodB2({bool isA = true, bool isB = false}) {}
+
+void methodB3(String str, {bool? isA, bool? isB}) {}
+//可选位置参数
+/*
+由于非空检查：可选参数要加代表可空的？或者赋默认值
+?就是告诉编译器这是nullability类型，告诉编译器如果为空，我后面自己会处理的。
+
+为什么可选位置参数不能加required，而可选命名参数可以加required
+原因:
+void methodC2([required bool isA, required bool isB]) {}
+实际和
+void methodC2(bool isA,bool isB) {}
+是等效的，因为调用的时候写法一样
+
+而
+void methodB1({required bool isA, required bool isB}) {}
+和
+void methodB1(bool isA, bool isB) {}
+不等效，因为调用的时候写法不一样
+ */
+void methodC(bool isA, [bool? isB, bool? isC]) {}
+
+void methodC1(bool isA, [bool isB = true, bool isC = false]) {}
+//void methodC2([required bool isA, required bool isB]) {}  //编译检查不通过Can't have modifier 'required' here.
+
+// =>的使用,方法如果只有一条语句，用=>
+
+void methodD(String str) => print(str);
+/*
+匿名内部类也可以用=>
+ */
+void methodD1() {
+  var list = ['a', 'b', 'c'];
+  list.forEach((str) => print(str));
+}
+
+/*
+是=>而不是->;
+没有return关键字,这里methodD2和methodD3是等效的
+ */
+int methodD2() => 3 + 3;
+
+int methodD3() {
   return 3 + 3;
 }
+
