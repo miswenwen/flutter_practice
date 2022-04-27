@@ -1,7 +1,5 @@
 void main() {
-  //age没有制定的时候是null，null也可以toString，打印'null'这个字符串
-  testAlterMethod('potter');
-  testAlterMethod('potter', 30);
+  //null也可以toString，打印'null'这个字符串
 }
 
 //一般函数
@@ -25,6 +23,20 @@ void methodA() {
     print(str);
   });
 }
+/*
+匿名函数可以直接赋给var，作为一个变量
+调用的话就是
+say('Hi');
+cal(3,3);
+注意:String类型的话可以不申明，其它类型要申明
+ */
+var say = (str) {
+  print(str);
+};
+var cal = (int a, int b) {
+  return a + b;
+};
+var cal2 = ((int a, int b) => a + b);
 
 //可选参数,分为可选命名参数和可选位置参数
 /*
