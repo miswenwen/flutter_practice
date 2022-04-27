@@ -3,6 +3,9 @@ void main() {
 }
 
 //一般函数
+/*
+注意，dart和java不一样，是不支持方法重载的，作为代替的是可选参数，不管是普通方法还是构造方法
+ */
 void methodZ() {}
 /*
 这里注意，我们在调用methodZ1的时候，如果是methodZ1(true,null)实际编译都不会让过的，因为有非空检查
@@ -23,6 +26,7 @@ void methodA() {
     print(str);
   });
 }
+
 /*
 匿名函数可以直接赋给var，作为一个变量
 调用的话就是
@@ -103,3 +107,56 @@ int methodD3() {
   return 3 + 3;
 }
 
+//构造方法
+class Point {
+  num? x, y;
+
+  Point(num x, num y) {
+    // 还有更好的方式来实现下面代码，敬请关注。
+    this.x = x;
+    this.y = y;
+  }
+}
+
+class Point1 {
+  late num x, y;
+
+  Point(num x, num y) {
+    this.x = x;
+    this.y = y;
+  }
+}
+
+/*
+语法糖
+ */
+class Point2 {
+  num x, y;
+
+  Point2(this.x, this.y);
+}
+
+//命名构造函数
+class Point3 {
+  late num x, y;
+
+  Point3(this.x, this.y);
+
+  /*
+  命名构造函数
+  相当于把构造方法改了个名字
+   */
+  Point3.origin() {
+    x = 0;
+    y = 0;
+  }
+
+  /*
+  下面两种写法等效，重定向构造函数
+   */
+  Point3.test(num x) {
+    Point3(x, 0);
+  }
+
+  Point3.testX(num x) : this(x, 0);
+}

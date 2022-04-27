@@ -1,16 +1,5 @@
 import 'package:flutter/material.dart';
 
-/*
-UI的常见嵌套：
-main()
-->runApp()
-->MaterialApp
-  theme
-  home
-->Scaffold
-  appBar
-  body
- */
 void main() {
   runApp(MyApp());
 }
@@ -18,30 +7,23 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // TODO: implement build
     return MaterialApp(
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: MyHomePage(),
+      home: HomePage(),
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  var widgetList = <Widget>[];
-
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    widgetList.add(Text('sss'));
-    widgetList.add(Text('sss'));
-    widgetList.add(Text('sss'));
-
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-        title: Text('Hello Potter'),
+        title: Text('learn'),
       ),
-      body: ListView(
-        children: widgetList,
-      ),
+      body: Text('text'),
     );
   }
 }
