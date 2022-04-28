@@ -11,6 +11,7 @@ void testVar() {
   var year = 1992;
   //String
   var name = 'potter';
+  var name1 = 'potter' * 10; //字符串重复n次，调试text的布局的时候好用
 
   //set
   var set = {'a', 'b', 'c'};
@@ -43,7 +44,7 @@ void testVar() {
 
   //for each
   var teas2 = ['green', 'black', 'chamomile', 'earl grey'];
-  teas2.forEach((tea) => print('I drink $tea'));//forEach里面是匿名内部类
+  teas2.forEach((tea) => print('I drink $tea')); //forEach里面是匿名内部类
 
   //where(),any(),every()
   var teas3 = ['green', 'black', 'chamomile', 'earl grey'];
