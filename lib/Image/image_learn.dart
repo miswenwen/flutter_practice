@@ -80,6 +80,12 @@ class ImageRoute extends StatelessWidget {
             'images/one_piece.png',
             width: 100,
           ),
+          //不支持xml和svg的矢量图，只支持字体图标，也就是Icons.xxx,要使用svg的话，得用非官方的flutter_svg包
+          Image.asset(
+            'images/access_alarms.xml',
+            width: 100,
+            height: 100,
+          ),
           //这也太方便了
           Image(
             image: NetworkImage(
