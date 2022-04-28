@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: HomePage(),
+      home: TextRoute(),
     );
   }
 }
@@ -100,7 +100,7 @@ enum TextOverflow {
   static const TextDecoration lineThrough = TextDecoration._(0x4);
   }
  */
-class HomePage extends StatelessWidget {
+class TextRoute extends StatelessWidget {
   var widgetList = <Widget>[];
   Text text1 = Text('I\'m potter 123123123123');
   Text text2 = Text(
@@ -158,7 +158,7 @@ class HomePage extends StatelessWidget {
                 decoration: TextDecoration.lineThrough,
                 decorationStyle: TextDecorationStyle.dashed),
           ),
-          //组合效果还是和Android一样，使用span
+          //组合效果还是和Android一样，使用span,注意这是命名构造方法
           Text.rich(TextSpan(children: [
             TextSpan(text: 'Hello'),
             TextSpan(
