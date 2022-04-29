@@ -69,7 +69,7 @@ class SwitchState extends State<SwitchRoute> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Switch Learn'),
+        title: Text('SwitchCheckBox Learn'),
       ),
       body: Column(
         children: <Widget>[
