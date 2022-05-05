@@ -30,7 +30,7 @@ class UnconstrainedBox extends StatelessWidget
 class AspectRatio extends SingleChildRenderObjectWidget
 
 
-class Container extends StatelessWidget
+class Container extends StatelessWidget 它是DecoratedBox、ConstrainedBox、Transform、Padding、Align等组件组合的一个多功能容器
 
 abstract class OffsetBase
 class Size extends OffsetBase

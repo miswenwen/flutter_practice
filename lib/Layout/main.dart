@@ -123,6 +123,10 @@ Container(
 children里的child的宽高依然是没变的，因为是children变大了，而不是child变大了)
 ，只能用等效的Expanded(weight = 1)来进行实现。
 注意体会！
+
+wrap和flex区别是前者可以折行，其它基本一致
+
+Positioned和Align的区别：前者可以指定元素的精准偏移，其实也无所谓，因为Align里面包个Container，Container里面加margin和padding可以实现一样的效果
  */
 class TestState extends State<TestRoute> {
   late Container container;
