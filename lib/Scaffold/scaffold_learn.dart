@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_practice/Button/button_learn.dart';
 
 void main() {
   runApp(MyApp());
@@ -49,7 +50,24 @@ class _ScaffoldRouteState extends State<ScaffoldRoute> {
         fixedColor: Colors.red,
         onTap: _onItemTapped,
       ),
-      body: Text('text $_selectedIndex'),
+      body: Column(
+        children: <Widget>[
+          TextButton(
+              onPressed: () {
+                //路由跳转，采用Navigator
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return ButtonRoute();
+                    },
+                  ),
+                );
+              },
+              child: Text('Jump')),
+          Text('text $_selectedIndex'),
+        ],
+      ),
     );
   }
 
