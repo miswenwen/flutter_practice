@@ -20,7 +20,9 @@ class MyApp extends StatelessWidget {
       //命名路由，还要initialRoute指定首页，感觉比较直观,比使用home要酷一点,后面Navigator调用的时候可以用pushNamed等api来管理路由
       routes: {
         'A': (context) => PageA(),
-        'B': (context) => PageB(text: 'GOGOGO'),
+        //注意这里PageB因为required 了 Text，可以用下面这种写法
+        //'B': (context) => PageB(text: 'GOGOGO'),
+        'B': (context) => PageB(text: ModalRoute.of(context)!.settings.arguments.toString()),
       },
       initialRoute: 'A',
       //home: PageA(),
@@ -49,9 +51,10 @@ class PageA extends StatelessWidget {
                   },
                 ),
               );
+              //命名路由也可以传递数据
               // var result = await Navigator.pushNamed(
               //   context,
-              //   'B',
+              //   'B',arguments: 'Data from A'
               // );
               print('potter :$result');
             },
@@ -73,6 +76,8 @@ class PageB extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //命名路由获取数据
+    //var fromA = ModalRoute.of(context)?.settings.arguments;
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
@@ -81,6 +86,7 @@ class PageB extends StatelessWidget {
       body: Column(
         children: <Widget>[
           Text('$text'),
+          //Text(fromA.toString()),
           ElevatedButton(
             onPressed: () {
               Navigator.pop(context, 'Close B');
