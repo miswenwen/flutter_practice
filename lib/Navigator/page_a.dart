@@ -17,7 +17,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: PageA(),
+      //命名路由，还要initialRoute指定首页，感觉比较直观,比使用home要酷一点,后面Navigator调用的时候可以用pushNamed等api来管理路由
+      routes: {
+        'A': (context) => PageA(),
+        'B': (context) => PageB(text: 'GOGOGO'),
+      },
+      initialRoute: 'A',
+      //home: PageA(),
     );
   }
 }
@@ -35,7 +41,7 @@ class PageA extends StatelessWidget {
           ElevatedButton(
             //如果B返回，A想拿值的话，实测async和await不能省略，而且push方法返回的是一个Future啊，Future怎么打印出来字符串的
             onPressed: () async {
-              var result =  await Navigator.push(
+              var result = await Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) {
@@ -43,6 +49,10 @@ class PageA extends StatelessWidget {
                   },
                 ),
               );
+              // var result = await Navigator.pushNamed(
+              //   context,
+              //   'B',
+              // );
               print('potter :$result');
             },
             child: Text('Jump'),
@@ -66,7 +76,7 @@ class PageB extends StatelessWidget {
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-        title: Text('PageA'),
+        title: Text('PageB'),
       ),
       body: Column(
         children: <Widget>[
