@@ -5,7 +5,8 @@ void main() {
   //test2();
   //test3();
   //test4();
-  test5();
+  //test5();
+  test6();
 }
 
 //输出结果abcd,即使是睡了2s，因为Future是插入到Event Queue里面，作为下一个Event执行，dart是单线程模型。
@@ -90,4 +91,11 @@ void test5() {
   }, onError: (e) {
     print(e.message);
   }, onDone: () {});
+}
+
+
+void test6(){
+  print('a');
+  sleep(Duration(seconds: 2));
+  print('b');
 }
