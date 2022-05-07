@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -46,7 +47,7 @@ class NetWorkRouteState extends State<NetWorkRoute> {
           ElevatedButton(
             child: Text('Get'),
             onPressed: () {
-              _loading ? null : request();
+              _loading ? null : request1();
             },
           ),
           Text('$_networkContent'),
@@ -87,5 +88,13 @@ class NetWorkRouteState extends State<NetWorkRoute> {
         _loading = false;
       });
     }
+  }
+
+  //采用DIO
+  request1() async{
+    Dio dio = Dio();
+    Response response;
+    response = await dio.get('https://www.baidu.com');
+    print('potter' + response.data.toString());
   }
 }
