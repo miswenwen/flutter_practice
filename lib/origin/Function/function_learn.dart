@@ -7,6 +7,10 @@ void main() {
     print('fly $str');
   });
   bird.fly('I\'m flying');
+
+  Compare1 compare1 = ((a, b) {
+    return 0;
+  });
 }
 
 // 定义一个类型（方法），该方法需要传入一个int参数
@@ -49,3 +53,5 @@ class SortedCollection {
  */
 typedef Compare1 = int Function(Object a, Object b);
 typedef int Compare2(Object a, Object b);
+//泛型的使用
+typedef Compare3<E> = int Function(E element);
