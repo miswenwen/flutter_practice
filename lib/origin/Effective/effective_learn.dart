@@ -39,7 +39,7 @@ typedef Go = bool Function<T>(T value);
 //
 // 在常量的命名上，个人认为无论lowerCamelCase或者uppercase_with_underscores都可以。
 //
-// 因为用uppercase_with_underscores可以从名字直接区分是常量还是变量
+// 因为用uppercase_with_underscores可以从名字直接区分是常量还是变量,其实可以用小k打头,例如constants.dart里面的kDebugMode
 // 需要注意的是，如果选定了一种，那么一般的常量还有枚举里的常量都要保持一致的风格。
 
 class Test {
