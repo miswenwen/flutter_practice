@@ -32,7 +32,7 @@ void methodA() {
 调用的话就是
 say('Hi');
 cal(3,3);
-注意:String类型的话可以不申明，其它类型要申明
+注意:dart中，方法可以省略参数类型
  */
 var say = (str) {
   print(str);

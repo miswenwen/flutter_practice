@@ -3,13 +3,19 @@
 void main() {
   testVar();
   print("just try");
+
+  var list = [1, 2, 3, 4];
+  list.forEach((element) {
+    print(element);
+  });
+  list.forEach(print);
 }
 
 /*变量*/
 void testVar() {
   //number
   var year = 1992;
-  var max = double.infinity;//无限大，有时候布局里设置宽高的时候用
+  var max = double.infinity; //无限大，有时候布局里设置宽高的时候用
   //String
   var name = 'potter';
   var name1 = 'potter' * 10; //字符串重复n次，调试text的布局的时候好用
