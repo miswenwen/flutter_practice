@@ -103,7 +103,7 @@ void test6() {
 打印
 abdcefgh
 
-原则：await的代码没执行完前，它后面的代码都执行不到,以为等效于then{}
+原则：await的代码没执行完前，它后面的代码都执行不到,可以等效为gitthen{}
 
 ab没问题
 c送到event queue队尾，所以先打d
