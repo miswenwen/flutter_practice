@@ -6,7 +6,7 @@ void main() {
   //test3();
   //test4();
   //test5();
-  test6();
+  test8();
 }
 
 //输出结果abcd,即使是睡了2s，因为Future是插入到Event Queue里面，作为下一个Event执行，dart是单线程模型。
@@ -93,9 +93,44 @@ void test5() {
   }, onDone: () {});
 }
 
-
-void test6(){
+void test6() {
   print('a');
   sleep(Duration(seconds: 2));
   print('b');
+}
+
+/*async await 异步任务串行化
+打印
+abdcefgh
+
+原则：await的代码没执行完前，它后面的代码都执行不到
+
+ab没问题
+c送到event queue队尾，所以先打d
+ef是await修饰，所以是cef,不用看await后面的
+然后gh
+ */
+Future<void> test7() async {
+  print('a');
+  await Future(() => print('b'));
+  Future(() => print('c'));
+  print('d');
+  await Future(() {
+    print('e');
+  }).then((_) {
+    print('f');
+  });
+  print('g');
+  await Future(() => print('h'));
+}
+
+test8() {
+  Future(() => print('a')).then((value) {
+    print('b');
+    Future(() => print('c'));
+    Future(() => print('d'));
+    Future(() => print('e')).then((value) {
+      print('f');
+    });
+  });
 }
