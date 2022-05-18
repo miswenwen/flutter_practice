@@ -6,7 +6,7 @@ void main() {
   //test3();
   //test4();
   //test5();
-  test8();
+  test77();
 }
 
 //输出结果abcd,即使是睡了2s，因为Future是插入到Event Queue里面，作为下一个Event执行，dart是单线程模型。
@@ -103,7 +103,7 @@ void test6() {
 打印
 abdcefgh
 
-原则：await的代码没执行完前，它后面的代码都执行不到
+原则：await的代码没执行完前，它后面的代码都执行不到,以为等效于then{}
 
 ab没问题
 c送到event queue队尾，所以先打d
@@ -124,13 +124,34 @@ Future<void> test7() async {
   await Future(() => print('h'));
 }
 
-test8() {
-  Future(() => print('a')).then((value) {
-    print('b');
-    Future(() => print('c'));
-    Future(() => print('d'));
-    Future(() => print('e')).then((value) {
-      print('f');
+//和上述代码一致，但是可读性差，这里的then是嵌套了好几层的，注意和没有嵌套的进去区分
+Future<void> test77() {
+  return t1().then((value) {
+    t2().then((value) {
+      t3().then((value) {});
     });
   });
 }
+
+Future t1() {
+  print('a');
+  return Future(() {
+    print('b');
+  });
+}
+
+Future t2() {
+  Future(() => print('c'));
+  print('d');
+  return Future(() {
+    print('e');
+    print('f');
+  });
+}
+
+Future t3() {
+  print('g');
+  return Future(() => print('h'));
+}
+
+
