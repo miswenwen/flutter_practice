@@ -36,12 +36,21 @@ class MyApp extends StatelessWidget {
         'B': (context) => Life2(),
       },
       initialRoute: 'A',
+      onGenerateRoute: (RouteSettings settings) {
+        return MaterialPageRoute(builder: (context) {
+          String? routeName = settings.name;
+          print('onGenerateRoute $routeName');
+          // 如果访问的路由页需要登录，但当前未登录，则直接返回登录页路由，
+          // 引导用户登录；其它情况则正常打开路由。
+          if (routeName == 'c') {}
+          return Life2();
+        });
+      },
     );
   }
 }
 
 class Life extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,7 +61,13 @@ class Life extends StatelessWidget {
         children: <Widget>[
           ElevatedButton(
             onPressed: () {
+              // Navigator.push(context, MaterialPageRoute(
+              //   builder: (context) {
+              //     return Life2();
+              //   },
+              // ));
               Navigator.pushNamed(context, 'B');
+              //Navigator.pushNamed(context, 'C');
             },
             child: Text('Jump'),
           ),
@@ -72,15 +87,19 @@ class Life2 extends StatefulWidget {
 class Life2State extends State<Life2> {
   var logger = Logger(
     printer: PrettyPrinter(
-        methodCount: 0, // number of method calls to be displayed
-        errorMethodCount: 8, // number of method calls if stacktrace is provided
-        lineLength: 120, // width of the output
-        colors: true, // Colorful log messages
-        printEmojis: false, // Print an emoji for each log message
+        methodCount: 0,
+        // number of method calls to be displayed
+        errorMethodCount: 8,
+        // number of method calls if stacktrace is provided
+        lineLength: 120,
+        // width of the output
+        colors: true,
+        // Colorful log messages
+        printEmojis: false,
+        // Print an emoji for each log message
         printTime: false // Should each log print contain a timestamp
-    ),
+        ),
   );
-
 
   @override
   Widget build(BuildContext context) {
@@ -112,7 +131,6 @@ class Life2State extends State<Life2> {
   void deactivate() {
     super.deactivate();
     logger.d("deactivate");
-
   }
 
   @override
@@ -147,9 +165,7 @@ class Life2State extends State<Life2> {
 
   @override
   void setState(VoidCallback fn) {
-    super.setState(() {
-
-    });
+    super.setState(() {});
     logger.d("setState");
   }
 
@@ -159,8 +175,8 @@ class Life2State extends State<Life2> {
     logger.d("didUpdateWidget");
   }
 
-  // @override
-  // void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  //
-  // }
+// @override
+// void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+//
+// }
 }
