@@ -46,7 +46,66 @@ class MyApp extends StatelessWidget {
           return Life2();
         });
       },
+      //感觉onGenerateRoute和onUnknownRoute没区别啊，只是两者互斥而已onGeneratedRoute优先级更高
+      // onUnknownRoute: (RouteSettings settings) {
+      //   return MaterialPageRoute(builder: (context) {
+      //     String? routeName = settings.name;
+      //     print('onUnknownRoute $routeName');
+      //     return Life2();
+      //   });
+      // },
+      navigatorObservers: <NavigatorObserver>[AppNavigatorObserver()],
     );
+  }
+}
+
+class AppNavigatorObserver extends NavigatorObserver {
+  var logger = Logger(
+    printer: PrettyPrinter(
+        methodCount: 0,
+        // number of method calls to be displayed
+        errorMethodCount: 8,
+        // number of method calls if stacktrace is provided
+        lineLength: 120,
+        // width of the output
+        colors: true,
+        // Colorful log messages
+        printEmojis: false,
+        // Print an emoji for each log message
+        printTime: false // Should each log print contain a timestamp
+        ),
+  );
+
+  @override
+  void didPop(Route<dynamic> route, Route<dynamic>? previousRoute) {
+    logger.d('didPop  route ${route.settings.name}  previousRoute ${previousRoute?.settings.name}');
+
+  }
+
+  @override
+  void didReplace({Route<dynamic>? newRoute, Route<dynamic>? oldRoute}) {
+    logger.d('didReplace  newRoute ${newRoute?.settings.name}  oldRoute ${oldRoute?.settings.name}');
+  }
+
+  @override
+  void didStopUserGesture() {
+    logger.d('didStopUserGesture');
+  }
+
+  @override
+  void didStartUserGesture(
+      Route<dynamic> route, Route<dynamic>? previousRoute) {
+    logger.d('didStartUserGesture   route ${route.settings.name}  previousRoute ${previousRoute?.settings.name}');
+  }
+
+  @override
+  void didRemove(Route<dynamic> route, Route<dynamic>? previousRoute) {
+    logger.d('didRemove   route ${route.settings.name}  previousRoute ${previousRoute?.settings.name}');
+  }
+
+  @override
+  void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) {
+    logger.d('didPush   route ${route.settings.name}  previousRoute ${previousRoute?.settings.name}');
   }
 }
 
@@ -66,8 +125,8 @@ class Life extends StatelessWidget {
               //     return Life2();
               //   },
               // ));
-              Navigator.pushNamed(context, 'B');
-              //Navigator.pushNamed(context, 'C');
+              // Navigator.pushNamed(context, 'B');
+              Navigator.pushNamed(context, 'D');
             },
             child: Text('Jump'),
           ),
