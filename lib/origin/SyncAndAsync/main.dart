@@ -155,3 +155,14 @@ Future t3() {
 }
 
 
+Future<bool> exit(){
+  return Future.value(false);
+
+  //三者等效
+  // return Future((){
+  //   return false;
+  // });
+  // return Future(() => false);
+}
+
+
