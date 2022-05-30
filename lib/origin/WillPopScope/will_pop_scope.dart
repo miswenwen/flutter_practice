@@ -33,18 +33,25 @@ class WillPopScopeRoute extends StatefulWidget {
 class _WillPopScopeRouteState extends State<WillPopScopeRoute> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      //final WillPopCallback? onWillPop;
-      //typedef WillPopCallback = Future<bool> Function();
-      body: WillPopScope(
-        onWillPop: () {
-          //return exitApp();
-          return (_dialogExitApp(context) as Future<bool>);
-          //return twiceThenExit();
-        },
-        child: Container(),
+    return WillPopScope(
+      child: Scaffold(
+        appBar: AppBar(),
+        body: Container(),
       ),
+      onWillPop: () async {
+        var result =  await _dialogExitApp(context);
+        print(result);
+        return result??=true;
+      },
+      //强转类型竟然不行，必须得上面的写法
+      // onWillPop: ()  {
+      //   return (_dialogExitApp(context) as Future<bool>);
+      //
+      // },
+      // onWillPop: ()  {
+      //   return exitApp();
+      //   return twiceThenExit();
+      // },
     );
   }
 
@@ -73,27 +80,30 @@ class _WillPopScopeRouteState extends State<WillPopScopeRoute> {
     });
   }
 
-  //这个有点问题，实测是AlertDialog的Btn没效果
+  //这个有点问题，实测是AlertDialog的Btn没效果，后面解决了，不用as，而是用??=解决了
+  //这里的原理有点像A界面跳B界面，B界面退出，返回值给A
+  //这里就是当前界面跳AlertDialog，pop实际是干掉的dialog，然后返回false或者true。
   Future<bool?> _dialogExitApp(BuildContext context) {
     return showDialog(
-        context: context,
-        builder: (context) =>
-        new AlertDialog(
-          content: new Text("是否退出"),
-          actions: <Widget>[
-            new FlatButton(
-                onPressed: () {
-                  print('1111');
-                  Navigator.of(context).pop(false);
-                },
-                child: new Text("取消")),
-            new FlatButton(
-                onPressed: () {
-                  print('2222');
-                  Navigator.of(context).pop(true);
-                },
-                child: new Text("确定"))
-          ],
-        ));
+      context: context,
+      builder: (context) => new AlertDialog(
+        content: new Text("是否退出1"),
+        actions: <Widget>[
+          new ElevatedButton(
+              onPressed: () async {
+                print('1111');
+                Navigator.of(context).pop(false);
+              },
+              child: new Text("取消")),
+          new ElevatedButton(
+              onPressed: () async {
+                print('2222');
+                Navigator.pop(context, true);
+                //Navigator.of(context).pop(true);
+              },
+              child: new Text("确定"))
+        ],
+      ),
+    );
   }
 }
