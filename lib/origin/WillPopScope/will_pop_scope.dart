@@ -40,7 +40,8 @@ class _WillPopScopeRouteState extends State<WillPopScopeRoute> {
       body: WillPopScope(
         onWillPop: () {
           //return exitApp();
-          return twiceThenExit();
+          return (_dialogExitApp(context) as Future<bool>);
+          //return twiceThenExit();
         },
         child: Container(),
       ),
@@ -70,5 +71,29 @@ class _WillPopScopeRouteState extends State<WillPopScopeRoute> {
       }
       return true;
     });
+  }
+
+  //这个有点问题，实测是AlertDialog的Btn没效果
+  Future<bool?> _dialogExitApp(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (context) =>
+        new AlertDialog(
+          content: new Text("是否退出"),
+          actions: <Widget>[
+            new FlatButton(
+                onPressed: () {
+                  print('1111');
+                  Navigator.of(context).pop(false);
+                },
+                child: new Text("取消")),
+            new FlatButton(
+                onPressed: () {
+                  print('2222');
+                  Navigator.of(context).pop(true);
+                },
+                child: new Text("确定"))
+          ],
+        ));
   }
 }
