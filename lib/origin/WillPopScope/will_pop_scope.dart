@@ -39,9 +39,9 @@ class _WillPopScopeRouteState extends State<WillPopScopeRoute> {
         body: Container(),
       ),
       onWillPop: () async {
-        var result =  await _dialogExitApp(context);
+        var result = await _dialogExitApp(context);
         print(result);
-        return result??=true;
+        return result ??= true;
       },
       //强转类型竟然不行，必须得上面的写法
       // onWillPop: ()  {

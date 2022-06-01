@@ -1,12 +1,12 @@
 import 'dart:io';
 
 void main() {
-  //test1();
+  test1();
   //test2();
   //test3();
   //test4();
   //test5();
-  test77();
+  //test77();
 }
 
 //输出结果abcd,即使是睡了2s，因为Future是插入到Event Queue里面，作为下一个Event执行，dart是单线程模型。
@@ -47,12 +47,15 @@ void test3() {
     Future.delayed(Duration(seconds: 2), () {
       print('a');
       print(DateTime.now());
+      return 'liu';
     }),
     Future.delayed(Duration(seconds: 4), () {
       print('b');
       print(DateTime.now());
+      return 'liu2';
     }),
   ]).then((value) {
+    print(DateTime.now());
     print(value);
   });
 }
@@ -154,8 +157,7 @@ Future t3() {
   return Future(() => print('h'));
 }
 
-
-Future<bool> exit(){
+Future<bool> exit() {
   return Future.value(false);
 
   //三者等效
@@ -164,5 +166,3 @@ Future<bool> exit(){
   // });
   // return Future(() => false);
 }
-
-
