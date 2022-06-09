@@ -1,95 +1,68 @@
-// View
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(Body());
 }
 
-class MyApp extends StatelessWidget {
+class Body extends StatelessWidget {
+  const Body({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return MaterialApp(
-      theme: ThemeData(primaryColor: Colors.blue),
-      routes: {
-        'a': (context) => HomeView(),
-        'b': (context) => HomeViewMultipleWidgets(),
-      },
-      initialRoute: 'a',
+      home: HomeViewMultipleWidgets(),
     );
   }
 }
-
-//响应式的写法
-/*
-class ViewModelBuilder<T extends ChangeNotifier> extends StatefulWidget
-class ChangeNotifier implements Listenable
- */
-
-class HomeView extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    // Using the reactive constructor gives you the traditional ViewModel
-    // binding which will execute the builder again when notifyListeners is called.
-    return ViewModelBuilder<HomeViewModel>.reactive(
-      viewModelBuilder: () => HomeViewModel(),
-      onModelReady: (viewModel) => viewModel.initialise(),
-      builder: (context, viewModel, child) {
-        return Scaffold(
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              viewModel.updateTitle();
-            },
-          ),
-          body: Center(
-            child: Text(viewModel.title),
-          ),
-        );
-      },
-    );
-  }
-}
-
-//注意这里继承自ChangeNotifier
-// ViewModel
-class HomeViewModel extends ChangeNotifier {
-  String title = 'default';
-
-  void initialise() {
-    title = 'initialised';
-    notifyListeners(); //重建UI
-  }
-
-  int counter = 0;
-
-  void updateTitle() {
-    counter++;
-    title = '$counter';
-    notifyListeners();
-  }
-}
-
-// ViewModel in the above code，
-//nonReactive,我们必须为所有不同的响应式布局提供相同的 ViewModel。
+// ViewModel in the above code
 
 // View
 class HomeViewMultipleWidgets extends StatelessWidget {
+  bool state = false;
+
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<HomeViewModel>.nonReactive(
-      viewModelBuilder: () => HomeViewModel(),
-      onModelReady: (viewModel) => viewModel.initialise(),
-      builder: (context, viewModel, _) => Scaffold(
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            viewModel.updateTitle();
-          },
-        ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[TitleSection(), DescriptionSection()],
-        ),
+    return Scaffold(
+      appBar: AppBar(),
+      body: Column(
+        children: <Widget>[
+          Checkbox(
+            value: state,
+            onChanged: (v) {
+              state = !state;
+            },
+          ),
+
+          ///这里测试reactive 和nonReactive
+          ///实测无论对于reactive，它里面包的所有view都会刷新一次
+          ///对于nonReactive，它里面包的只有继承于ViewModelWidget的才会刷新
+          ///对于两者来说，外面没包住的ui的不会刷新，例如上面的checkbox
+          ViewModelBuilder<HomeViewModel>.reactive(
+            viewModelBuilder: () => HomeViewModel(),
+            onModelReady: (viewModel) => viewModel.initialise(),
+            builder: (context, viewModel, _) {
+              return Column(
+                children: <Widget>[
+                  FloatingActionButton(
+                    onPressed: () {
+                      viewModel.updateTitle();
+                    },
+                  ),
+                  TitleSection(),
+                  DescriptionSection(),
+                  Checkbox(
+                    value: state,
+                    onChanged: (v) {
+                      state = !state;
+                    },
+                  ),
+                ],
+              );
+            },
+          ),
+        ],
       ),
     );
   }
@@ -126,5 +99,23 @@ class DescriptionSection extends ViewModelWidget<HomeViewModel> {
         ),
       ],
     );
+  }
+}
+
+// ViewModel
+class HomeViewModel extends ChangeNotifier {
+  String title = 'default';
+
+  void initialise() {
+    title = 'initialised';
+    notifyListeners();
+  }
+
+  int counter = 0;
+
+  void updateTitle() {
+    counter++;
+    title = '$counter';
+    notifyListeners();
   }
 }

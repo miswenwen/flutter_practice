@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 
 void main() {
@@ -80,6 +80,13 @@ class ButtonRoute extends StatelessWidget {
             onPressed: () {},
             icon: Icon(Icons.thumb_up),
           ),
+          IconButton(
+              onPressed: () {},
+              icon: Image.asset(
+                'images/one_piece.png',
+                width: 24,
+                height: 24,
+              )),
           Text('count: $count'),
         ],
       ),
