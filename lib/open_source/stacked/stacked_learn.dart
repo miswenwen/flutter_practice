@@ -9,16 +9,11 @@ void main() {
   runApp(Body());
 }
 
-///BaseViewModel继承于ChangeNotifier，是它的扩展。内部维护了_busyStates还有_initialised。BaseViewModel讲道理会更好用。
-///BaseViewModel里面还维护了一个_errorStates，后续需要用上再说吧，当前的项目没这个需求。
+ViewModelBuilder? viewModelBuilder;
+
 ChangeNotifier? changeNotifier;
 BaseViewModel? baseViewModel;
 
-///
-ViewModelBuilder? viewModelBuilder;
-
-///一般用ViewModelWidget，可以通过重写构造方法设置reactive的值，保证是否刷新(notifyListeners()的时候)
-///其实可以整个项目里所有的Widget都继承于ViewModelWidget，静态的reactive就给false，动态的就给true
 ViewModelWidget? viewModelWidget;
 ViewModelBuilderWidget? viewModelBuilderWidget;
 
@@ -29,6 +24,26 @@ MultipleStreamViewModel? multipleStreamViewModel;
 FutureViewModel? futureViewModel;
 MultipleFutureViewModel? multipleFutureViewModel;
 IndexTrackingViewModel? indexTrackingViewModel;
+
+///总结下，
+///****ViewModelBuilder
+///ViewModelBuilder继承于StatefulWidget
+///ViewModelBuilder.reactive：builder里面包的所有view都会刷新一次
+///ViewModelBuilder.nonReactive：builder里面包的只有继承于ViewModelWidget且reactive为true的才会刷新
+
+///****ViewModelWidget
+///ViewModelWidget的reactive默认为true，可以通过重写构造方法设置为false，会决定viewModel在调用notifyListeners()的时候是否刷新
+///疑问：ViewModelWidget的reactive设置false和builder里面普通的Widget有啥区别呢？
+///1.只是前者可以直接ViewModel实例，后者要传进去。
+///2.ViewModelWidget是继承于Widget，有些Mixin要求是StatefulWidget，所有也要看应用场景。
+
+///****ChangeNotifier
+///基类，简单需求，我们的ViewModel类继承它就足够了，复杂的功能自己设计逻辑结合它也能实现。
+
+///****BaseViewModel
+///BaseViewModel继承于ChangeNotifier，是它的扩展。内部维护了_busyStates还有_initialised。
+///runBusyFuture：不传object就把当前ViewModel的busy设置为true，执行完busy设置为false。如果传了object，就是这个object的busy状态值。
+///BaseViewModel里面还维护了一个_errorStates，后续需要用上再说吧，当前的项目没这个需求。
 
 class Body extends StatelessWidget {
   const Body({Key? key}) : super(key: key);
