@@ -2,9 +2,33 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
+///ViewModel应该继承ChangeNotifier/BaseViewModel
+///单个的Widget应该继承ViewModelWidget<T extends ChangeNotifier> or ViewModelBuidlerWidget
+///ViewModelBuilder.reactive/nonReactive返回的是一个StatefulState
 void main() {
   runApp(Body());
 }
+
+///BaseViewModel继承于ChangeNotifier，是它的扩展。内部维护了_busyStates还有_initialised。BaseViewModel讲道理会更好用。
+///BaseViewModel里面还维护了一个_errorStates，后续需要用上再说吧，当前的项目没这个需求。
+ChangeNotifier? changeNotifier;
+BaseViewModel? baseViewModel;
+
+///
+ViewModelBuilder? viewModelBuilder;
+
+///一般用ViewModelWidget，可以通过重写构造方法设置reactive的值，保证是否刷新(notifyListeners()的时候)
+///其实可以整个项目里所有的Widget都继承于ViewModelWidget，静态的reactive就给false，动态的就给true
+ViewModelWidget? viewModelWidget;
+ViewModelBuilderWidget? viewModelBuilderWidget;
+
+ReactiveServiceMixin? reactiveServiceMixin;
+ReactiveViewModel? reactiveViewModel;
+StreamViewModel? streamViewModel;
+MultipleStreamViewModel? multipleStreamViewModel;
+FutureViewModel? futureViewModel;
+MultipleFutureViewModel? multipleFutureViewModel;
+IndexTrackingViewModel? indexTrackingViewModel;
 
 class Body extends StatelessWidget {
   const Body({Key? key}) : super(key: key);
