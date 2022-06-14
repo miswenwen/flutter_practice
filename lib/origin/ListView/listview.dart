@@ -5,6 +5,15 @@ import 'package:flutter/material.dart';
  * @description:
  * @date:2022/5/13 9:41
  */
+
+///常见需求：
+///ListView填满剩余控件
+///ListView固定若干个Item高度
+///ListView加分隔线
+///ListView分Type加载
+///ListViewItem里的Checkbox，progressbar状态维护
+///ListView数据按块加载
+///ListView上拉，下拉刷新
 void main() {
   runApp(MyApp());
 }
