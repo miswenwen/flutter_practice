@@ -14,21 +14,6 @@ import 'package:flutter/material.dart';
 ///ListViewItem里的Checkbox，progressbar状态维护
 ///ListView数据按块加载
 ///ListView上拉，下拉刷新
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(primaryColor: Colors.blue),
-      home: ListViewLearn(),
-    );
-  }
-}
 
 class ListViewLearn extends StatefulWidget {
   const ListViewLearn({Key? key}) : super(key: key);

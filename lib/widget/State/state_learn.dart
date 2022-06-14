@@ -20,24 +20,6 @@ typedef WidgetBuilder = Widget Function(BuildContext context);
 为什么要用Builder包？
 参考https://blog.csdn.net/petterp/article/details/111770747
  */
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      routes: {
-        'A': (context) => StateLearnRoute(),
-      },
-      initialRoute: 'A',
-    );
-  }
-}
 
 class StateLearnRoute extends StatefulWidget {
   @override
@@ -67,8 +49,7 @@ class _StateLearnRouteState extends State<StateLearnRoute> {
                   //两种方式，注意要用Builder包起来
                   ScaffoldState _scaffoldState = Scaffold.of(context);
                   _scaffoldState.openDrawer();
-                  ScaffoldState? _scaffoldState2 = context
-                      .findAncestorStateOfType<ScaffoldState>();
+                  ScaffoldState? _scaffoldState2 = context.findAncestorStateOfType<ScaffoldState>();
                   _scaffoldState2?.openDrawer();
                 },
                 child: Text('Press'),

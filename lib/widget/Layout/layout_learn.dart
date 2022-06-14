@@ -39,34 +39,20 @@ class Padding extends SingleChildRenderObjectWidget
 
 如果我现在需要一个dp或一个px高的分隔线，用哪个widget？
  */
-void main(){
-  runApp(MyApp());
-}
-class MyApp extends StatelessWidget{
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.blue
-      ),
-      home: LayoutRoute(),
-    );
-  }
 
-}
-class LayoutRoute extends StatefulWidget{
+class LayoutRoute extends StatefulWidget {
   @override
   State<LayoutRoute> createState() {
     return LayoutState();
   }
-
 }
-class LayoutState extends State<LayoutRoute>{
+
+class LayoutState extends State<LayoutRoute> {
   late BoxConstraints boxConstraints;
   late ConstrainedBox constrainedBox;
   late SizedBox sizedBox;
   late UnconstrainedBox unconstrainedBox;
-  late AspectRatio aspectRatio;//纵横比
+  late AspectRatio aspectRatio; //纵横比
   late LimitedBox limitedBox;
   late FractionallySizedBox fractionallySizedBox; //[ˈfrækʃənəli]很小
 
@@ -94,5 +80,4 @@ class LayoutState extends State<LayoutRoute>{
       ),
     );
   }
-
 }

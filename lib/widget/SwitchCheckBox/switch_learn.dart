@@ -1,21 +1,4 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
-
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return MaterialApp(
-      theme: ThemeData(primarySwatch: Colors.blue),
-      home: SwitchRoute(),
-    );
-  }
-}
 
 class SwitchRoute extends StatefulWidget {
   @override
@@ -86,7 +69,7 @@ class SwitchState extends State<SwitchRoute> {
               activeColor: Colors.green,
               onChanged: (value) {
                 setState(() {
-                  _checkBoxSelected = value!;//这里注意value是bool?，所以要加个！
+                  _checkBoxSelected = value!; //这里注意value是bool?，所以要加个！
                 });
               })
         ],

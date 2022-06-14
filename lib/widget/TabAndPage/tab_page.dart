@@ -1,23 +1,5 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        primaryColor: Colors.blue,
-      ),
-      home: UIRoute(),
-    );
-  }
-}
-
 class UIRoute extends StatefulWidget {
   const UIRoute({Key? key}) : super(key: key);
 
@@ -41,8 +23,7 @@ class _UIRouteState extends State<UIRoute> with SingleTickerProviderStateMixin {
           tabs: _tabItems,
           controller: _tabController,
           onTap: (index) {
-            _pageController?.animateToPage(index,
-                duration: Duration(milliseconds: 500), curve: Curves.linear);
+            _pageController?.animateToPage(index, duration: Duration(milliseconds: 500), curve: Curves.linear);
           },
         ),
       ),
@@ -53,8 +34,7 @@ class _UIRouteState extends State<UIRoute> with SingleTickerProviderStateMixin {
           tabs: _tabItems,
           controller: _tabController,
           onTap: (index) {
-            _pageController?.animateToPage(index,
-                duration: Duration(milliseconds: 500), curve: Curves.linear);
+            _pageController?.animateToPage(index, duration: Duration(milliseconds: 500), curve: Curves.linear);
           },
         ),
       ),
@@ -130,8 +110,7 @@ class _UIRouteState extends State<UIRoute> with SingleTickerProviderStateMixin {
         _tabController?.animateTo(index);
       },
     );
-    _tabController = TabController(
-        length: _tabItems.length, vsync: this, initialIndex: _initIndex);
+    _tabController = TabController(length: _tabItems.length, vsync: this, initialIndex: _initIndex);
   }
 
   void others() {

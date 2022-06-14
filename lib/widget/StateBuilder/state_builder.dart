@@ -5,32 +5,15 @@ import 'package:flutter/material.dart';
  * @description:
  * @date:2022/5/13 9:41
  */
-void main() {
-  runApp(MyApp());
-}
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class StateBuilderRoute extends StatefulWidget {
+  const StateBuilderRoute({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        primaryColor: Colors.blue,
-      ),
-      home: TempRoute(),
-    );
-  }
+  State<StateBuilderRoute> createState() => _StateBuilderRouteState();
 }
 
-class TempRoute extends StatefulWidget {
-  const TempRoute({Key? key}) : super(key: key);
-
-  @override
-  State<TempRoute> createState() => _TempRouteState();
-}
-
-class _TempRouteState extends State<TempRoute> {
+class _StateBuilderRouteState extends State<StateBuilderRoute> {
   String str = "potter";
   int count = 0;
   bool checkState = false;

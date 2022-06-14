@@ -1,20 +1,5 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return MaterialApp(
-      theme: ThemeData(primarySwatch: Colors.blue),
-      home: IconRoute(),
-    );
-  }
-}
-
 //Icons类的矢量图一览在https://fonts.google.com/icons?selected=Material+Icons
 /*
 导入自定义的矢量图，要放在fonts目录下，是ttf文件，类似fonts/iconfont.ttf，也要使用到IconData类，回头用到再说吧
@@ -29,29 +14,24 @@ class IconRoute extends StatelessWidget {
     icons += " \uE237";
     icons += " \uE287";
     // TODO: implement build
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Icon Learn'),
-      ),
-      body: Column(
-        children: <Widget>[
-          //icons作为字体图标用Text进行显示和设置
-          Text(
-            icons,
-            style: TextStyle(
-              fontFamily: "MaterialIcons",
-              fontSize: 24,
-              color: Colors.cyanAccent,
-            ),
+    return Column(
+      children: <Widget>[
+        //icons作为字体图标用Text进行显示和设置
+        Text(
+          icons,
+          style: TextStyle(
+            fontFamily: "MaterialIcons",
+            fontSize: 24,
+            color: Colors.cyanAccent,
           ),
-          //用Icon类感觉方便点
-          Icon(
-            Icons.add,
-            color: Colors.blue,
-            size: 96,
-          )
-        ],
-      ),
+        ),
+        //用Icon类感觉方便点
+        Icon(
+          Icons.add,
+          color: Colors.blue,
+          size: 96,
+        )
+      ],
     );
   }
 }

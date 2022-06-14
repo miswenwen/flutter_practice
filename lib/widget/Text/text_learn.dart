@@ -1,18 +1,5 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(primarySwatch: Colors.blue),
-      home: TextRoute(),
-    );
-  }
-}
 /*
   const Text(
     String this.data, {
@@ -129,7 +116,7 @@ class TextRoute extends StatelessWidget {
                 Text(
                   'Hello3',
                   style: TextStyle(
-                    inherit: false,//不继承默认样式
+                    inherit: false, //不继承默认样式
                   ),
                 )
               ],
@@ -151,12 +138,7 @@ class TextRoute extends StatelessWidget {
           ),
           Text(
             'Hello world',
-            style: TextStyle(
-                color: Colors.red,
-                fontSize: 25,
-                background: Paint()..color = Colors.yellow,
-                decoration: TextDecoration.lineThrough,
-                decorationStyle: TextDecorationStyle.dashed),
+            style: TextStyle(color: Colors.red, fontSize: 25, background: Paint()..color = Colors.yellow, decoration: TextDecoration.lineThrough, decorationStyle: TextDecorationStyle.dashed),
           ),
           //组合效果还是和Android一样，使用span,注意这是命名构造方法
           Text.rich(TextSpan(children: [

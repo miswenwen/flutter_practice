@@ -1,21 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_practice/widget/Button/button_learn.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return MaterialApp(
-      theme: ThemeData(primarySwatch: Colors.blue),
-      home: ScaffoldRoute(),
-    );
-  }
-}
-
 class ScaffoldRoute extends StatefulWidget {
   @override
   State<ScaffoldRoute> createState() {

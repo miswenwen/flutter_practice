@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_practice/widget/Scaffold/scaffold_learn.dart';
 
 /*
 UI的常见嵌套：
@@ -26,21 +27,14 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-  var widgetList = <Widget>[];
-
   @override
   Widget build(BuildContext context) {
-    widgetList.add(Text('sss'));
-    widgetList.add(Text('sss'));
-    widgetList.add(Text('sss'));
-
-    // TODO: implement build
     return Scaffold(
       appBar: AppBar(
         title: Text('Hello Potter'),
       ),
-      body: ListView(
-        children: widgetList,
+      body: Container(
+        child: ScaffoldRoute(),
       ),
     );
   }

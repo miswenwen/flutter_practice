@@ -5,23 +5,6 @@ import 'package:flutter/material.dart';
  * @description:
  * @date:2022/5/13 9:41
  */
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        primaryColor: Colors.blue,
-      ),
-      home: WillPopScopeRoute(),
-    );
-  }
-}
 
 class WillPopScopeRoute extends StatefulWidget {
   const WillPopScopeRoute({Key? key}) : super(key: key);
@@ -70,8 +53,7 @@ class _WillPopScopeRouteState extends State<WillPopScopeRoute> {
       print('back pressed222');
       print(DateTime.now());
       print(_lastPressedAt);
-      if (_lastPressedAt == null ||
-          DateTime.now().difference(_lastPressedAt!) > Duration(seconds: 1)) {
+      if (_lastPressedAt == null || DateTime.now().difference(_lastPressedAt!) > Duration(seconds: 1)) {
         //两次点击间隔超过1秒则重新计时
         _lastPressedAt = DateTime.now();
         return false;
