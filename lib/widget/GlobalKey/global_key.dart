@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_practice/origin/Button/button_learn.dart';
-import 'package:flutter_practice/origin/GlobalKey/app.dart';
+import 'package:flutter_practice/widget/GlobalKey/app.dart';
 
 /**
  * @author:liuqipeng
@@ -77,7 +76,8 @@ class MixRouteState extends State<MixRoute> {
       ],
     );
   }
-  updateUI(){
+
+  updateUI() {
     setState(() {
       print('ssss');
     });

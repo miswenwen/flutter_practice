@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_practice/origin/Button/button_learn.dart';
+import 'package:flutter_practice/widget/Button/button_learn.dart';
 
 void main() {
   runApp(MyApp());
@@ -42,8 +42,7 @@ class _ScaffoldRouteState extends State<ScaffoldRoute> {
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.business), label: 'Business'),
+          BottomNavigationBarItem(icon: Icon(Icons.business), label: 'Business'),
           BottomNavigationBarItem(icon: Icon(Icons.school), label: 'School'),
         ],
         currentIndex: _selectedIndex,
