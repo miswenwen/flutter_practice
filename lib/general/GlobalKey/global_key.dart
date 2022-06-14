@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_practice/widget/GlobalKey/app.dart';
+
+import 'app.dart';
 
 /**
  * @author:liuqipeng
