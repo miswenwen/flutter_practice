@@ -45,7 +45,29 @@ class TextFieldState extends State<TextFieldRoute> {
             obscureText: true,
           ),
           //TextFormField是TextField的包装类，包含了Form的特性，方便数据的合法性检验和多个TextField的统一管理
-          TextFormField(),
+          TextFormField(
+            textInputAction: TextInputAction.search,
+
+            ///干掉padding 参考https://www.jianshu.com/p/cf3393063dbb  contentPadding和isDense
+            decoration: InputDecoration(
+              contentPadding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+              isDense: true,
+              border: InputBorder.none, //干掉下划线
+            ),
+            onChanged: (String str) {
+              print('potter onChanged: $str');
+            },
+            onFieldSubmitted: (String str) {
+              print('potter onFieldSubmitted: $str');
+            },
+          ),
+          TextFormField(
+            decoration: InputDecoration(
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(15.0),
+              ),
+            ),
+          )
         ],
       ),
     );
