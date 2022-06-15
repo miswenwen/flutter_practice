@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_practice/widget/Scaffold/scaffold_learn.dart';
+import 'package:flutter_practice/widget/Indicator/indicator_learn.dart';
 
 /*
 UI的常见嵌套：
@@ -34,7 +34,7 @@ class MyHomePage extends StatelessWidget {
         title: Text('Hello Potter'),
       ),
       body: Container(
-        child: ScaffoldRoute(),
+        child: IndicatorRoute(),
       ),
     );
   }
