@@ -7,13 +7,19 @@ import 'package:flutter/material.dart';
  */
 
 ///常见需求：
+///ListView当Column用
 ///ListView填满剩余控件 done
 ///ListView固定若干个Item高度  done
-///ListView加分隔线
+///ListView加分隔线 done
+///Listview里有100个item，但是listview只有3个item的高度，可以滑动
 ///ListView分Type加载
 ///ListViewItem里的Checkbox，progressbar状态维护
 ///ListView数据按块加载
 ///ListView上拉，下拉刷新
+
+///常见概念
+///如果Listview只是若干个item的高度，且不滑动。那么shrinkWrap足矣。但是注意别边界overflow了，如果实在很高可以用scrollview包起来
+///如果不用到shrinkWrap，Listview需要用expanded或者container来包，给它宽高。
 
 class ListViewLearn extends StatefulWidget {
   const ListViewLearn({Key? key}) : super(key: key);
@@ -29,9 +35,21 @@ class _ListViewLearnState extends State<ListViewLearn> {
       body: Column(
         children: [
           Text('1111111'),
-          listWithDivider2(),
+          listAsScroll(),
         ],
       ),
+    );
+  }
+
+  ///ListView当Column用，注意这个时候是可能overflow的，太高的话可以包在scrollview里
+  Widget listAsScroll() {
+    List<Widget> list = [];
+    for (int i = 0; i < 100; i++) {
+      list.add(Text('sss $i'));
+    }
+    return ListView(
+      shrinkWrap: true,
+      children: list,
     );
   }
 
