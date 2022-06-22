@@ -18,13 +18,14 @@ import 'package:flutter/material.dart';
 ///ListView上拉，下拉刷新
 
 ///常见概念
-///Listview高度<items的总高 可以滑动
-///Listview高度>=items的总高 不可以滑动
+///Listview高度<items的总高 可以滑动     一般是用Container或者Expanded包
+///Listview高度>=items的总高 不可以滑动  一般是用shrinkWrap
+///
 ///设置Listview的高度方式：
 ///1.外面包Container或者Expanded
 ///2.Listview本身使用shrinkWrap,根据items的高度来计算总高度
 ///如果是Listview()，shrinkWrap就可以了
-///如果是Listview.builder/Listview.seperate ,shrinkWrap + itemExtent + itemCount来计算总高度
+///如果是Listview.builder/Listview.seperate ,shrinkWrap + itemExtent(prototypeItem) + itemCount来计算总高度
 ///
 ///Listview如果没把shrinkWrap设置为true，是必须要用Container等widget包起来，给它高度的，要不然报错.
 ///如果listview的item高度都一样，最好shrinkWrap和itemExtent配合用。
@@ -44,7 +45,7 @@ class _ListViewLearnState extends State<ListViewLearn> {
       body: Column(
         children: [
           Text('1111111'),
-          listAsScroll(),
+          unchangedItemHeightList2(),
         ],
       ),
     );
@@ -124,9 +125,27 @@ class _ListViewLearnState extends State<ListViewLearn> {
     );
   }
 
+  ///这里和上例比，新加了prototypeItem，虽然最后效果一样，但是这里明显会更高效
+  Widget unchangedItemHeightList3() {
+    return ListView.builder(
+      shrinkWrap: true,
+      itemBuilder: (context, index) {
+        return Container(
+          height: 50,
+          child: Text('zzz $index'),
+        );
+      },
+      prototypeItem: Container(
+        height: 50,
+        child: Text('zzz'),
+      ),
+      itemCount: 3,
+    );
+  }
+
   ///ListView固定若干个Item高度,自己计算容器高度，不常用，太笨
   ///shrinkwrap如果为false，container的高度就必须要设置，要不然报错
-  Widget unchangedItemHeightList3() {
+  Widget unchangedItemHeightList4() {
     return Container(
       height: 3 * 60,
       color: Colors.blue,
