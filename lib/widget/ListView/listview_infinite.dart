@@ -14,6 +14,8 @@ class ListInfinite extends StatefulWidget {
   State<ListInfinite> createState() => _ListInfiniteState();
 }
 
+///实测每次setState后，listview区域里显示的index是上一次的，为什么能记忆住index呢？有点神奇，可能是Listview里面自己维护了index的值吧。
+///毕竟setState只是重新createState而已。
 class _ListInfiniteState extends State<ListInfinite> {
   List<String> list = <String>['end']; //list先只放一个元素，标记为表尾
   List<String> data = <String>['a', 'b', 'c'];
@@ -23,7 +25,7 @@ class _ListInfiniteState extends State<ListInfinite> {
       height: 300,
       child: ListView.builder(
         itemBuilder: (context, index) {
-          ///每到表尾就去加载20个数据，再build一次，但是这是怎么保证刷新完后在正确的index那呢？
+          ///每到表尾就去加载20个数据，再build一次
           if (list[index] == 'end') {
             if (list.length < 15) {
               insertData(index);
