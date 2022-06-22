@@ -18,8 +18,17 @@ import 'package:flutter/material.dart';
 ///ListView上拉，下拉刷新
 
 ///常见概念
-///如果Listview只是若干个item的高度，且不滑动。那么shrinkWrap足矣。但是注意别边界overflow了，如果实在很高可以用scrollview包起来
-///如果不用到shrinkWrap，Listview需要用expanded或者container来包，给它宽高。
+///Listview高度<items的总高 可以滑动
+///Listview高度>=items的总高 不可以滑动
+///设置Listview的高度方式：
+///1.外面包Container或者Expanded
+///2.Listview本身使用shrinkWrap,根据items的高度来计算总高度
+///如果是Listview()，shrinkWrap就可以了
+///如果是Listview.builder/Listview.seperate ,shrinkWrap + itemExtent + itemCount来计算总高度
+///
+///Listview如果没把shrinkWrap设置为true，是必须要用Container等widget包起来，给它高度的，要不然报错.
+///如果listview的item高度都一样，最好shrinkWrap和itemExtent配合用。
+///shrinkWrap在使用的时候，可能items的高度加起来overflow了，这时候外包可以再报个scrollview。
 
 class ListViewLearn extends StatefulWidget {
   const ListViewLearn({Key? key}) : super(key: key);
@@ -35,7 +44,7 @@ class _ListViewLearnState extends State<ListViewLearn> {
       body: Column(
         children: [
           Text('1111111'),
-          listXxxx(),
+          listAsScroll(),
         ],
       ),
     );
