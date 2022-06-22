@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_practice/widget/ListView/listview_infinite.dart';
+import 'package:flutter_practice/widget/ListView/listview.dart';
 
 /*
 UI的常见嵌套：
@@ -34,7 +34,7 @@ class MyHomePage extends StatelessWidget {
         title: Text('Hello Potter'),
       ),
       body: Container(
-        child: ListInfinite(),
+        child: ListViewLearn(),
       ),
     );
   }

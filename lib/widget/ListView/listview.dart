@@ -30,6 +30,12 @@ import 'package:flutter/material.dart';
 ///Listview如果没把shrinkWrap设置为true，是必须要用Container等widget包起来，给它高度的，要不然报错.
 ///如果listview的item高度都一样，最好shrinkWrap和itemExtent配合用。
 ///shrinkWrap在使用的时候，可能items的高度加起来overflow了，这时候外包可以再报个scrollview。
+///
+/// 即使用shrinkWrap 也会有过度滑动的那种效果，用physics: NeverScrollableScrollPhysics(),可以干掉
+///
+///在Flutter中ListView顶部默认状态下会有空白问题,会看到ListView头部有一点空白区域,那是因为当ListView没有和AppBar一起使用时,
+///头部会有一个padding,那么想要去掉这个padding,就要使用MediaQuery.removePadding把ListView包裹一下,
+///也就是需要将ListView作为MediaQuery.removePadding的子组件即可。
 
 class ListViewLearn extends StatefulWidget {
   const ListViewLearn({Key? key}) : super(key: key);
@@ -44,6 +50,10 @@ class _ListViewLearnState extends State<ListViewLearn> {
     return Scaffold(
       body: Column(
         children: [
+          Container(
+            height: 200,
+            color: Colors.red,
+          ),
           Text('1111111'),
           unchangedItemHeightList2(),
         ],
@@ -54,12 +64,13 @@ class _ListViewLearnState extends State<ListViewLearn> {
   ///ListView当Column用，注意这个时候是可能overflow的，太高的话可以包在scrollview里
   Widget listAsScroll() {
     List<Widget> list = [];
-    for (int i = 0; i < 100; i++) {
+    for (int i = 0; i < 10; i++) {
       list.add(Text('sss $i'));
     }
     return ListView(
       shrinkWrap: true,
       children: list,
+      physics: NeverScrollableScrollPhysics(),
     );
   }
 
@@ -115,8 +126,10 @@ class _ListViewLearnState extends State<ListViewLearn> {
   Widget unchangedItemHeightList2() {
     return ListView.builder(
       shrinkWrap: true,
+      physics: NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
         return Container(
+          color: Colors.cyanAccent,
           height: 50,
           child: Text('zzz $index'),
         );
