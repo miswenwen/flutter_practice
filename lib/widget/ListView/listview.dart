@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 ///ListView填满剩余控件 done
 ///ListView固定若干个Item高度  done
 ///ListView加分隔线 done
-///Listview里有100个item，但是listview只有3个item的高度，可以滑动
+///Listview里有100个item，但是listview只有3个item的高度，可以滑动 done
 ///ListView分Type加载
 ///ListViewItem里的Checkbox，progressbar状态维护
 ///ListView数据按块加载
@@ -35,7 +35,7 @@ class _ListViewLearnState extends State<ListViewLearn> {
       body: Column(
         children: [
           Text('1111111'),
-          listAsScroll(),
+          listXxxx(),
         ],
       ),
     );
@@ -50,6 +50,20 @@ class _ListViewLearnState extends State<ListViewLearn> {
     return ListView(
       shrinkWrap: true,
       children: list,
+    );
+  }
+
+  ///ListView
+  Widget listXxxx() {
+    List<Widget> list = [];
+    for (int i = 0; i < 100; i++) {
+      list.add(Text('sss $i'));
+    }
+    return Container(
+      height: 100,
+      child: ListView(
+        children: list,
+      ),
     );
   }
 
@@ -86,7 +100,7 @@ class _ListViewLearnState extends State<ListViewLearn> {
   }
 
   ///ListView固定若干个Item高度,利用shrinkWrap = true，常用
-  ///shrinkwrap，以该例来说，shrinkWrap = true,container的高度就可以不用设置
+  ///shrinkwrap，以该例来说，shrinkWrap = true,ListView.builder外面不用包个container,设置高度
   ///shrinkwrap默认值是false，意思就是用item的高度来生成listview的高度
   Widget unchangedItemHeightList2() {
     return ListView.builder(
@@ -169,6 +183,43 @@ class _ListViewLearnState extends State<ListViewLearn> {
           color: Colors.yellow,
         );
       },
+    );
+  }
+
+  ///Listview里有100个item，但是listview只有3个item的高度，可以滑动
+  Widget listTest1() {
+    List<Widget> list = [];
+    for (int i = 0; i < 100; i++) {
+      list.add(Text('sss $i'));
+    }
+    return Container(
+      height: 3 * 50,
+      child: ListView(
+        padding: EdgeInsets.only(left: 16, right: 16), //这样加padding会比较好，保证listview宽度还是屏幕宽度。免得手势触发区域小些
+        itemExtent: 50,
+        children: list,
+      ),
+    );
+  }
+
+  ///Listview里有100个item，但是listview只有3个item的高度,ListView.builder写法
+  Widget listTest2() {
+    List<Widget> list = [];
+    for (int i = 0; i < 100; i++) {
+      list.add(Text('sss $i'));
+    }
+    return Container(
+      height: 3 * 50,
+      child: ListView.builder(
+        itemBuilder: (context, index) {
+          return Container(
+            height: 50,
+            child: Text('zzz $index'),
+          );
+        },
+        itemCount: 100,
+        shrinkWrap: true,
+      ),
     );
   }
 }
