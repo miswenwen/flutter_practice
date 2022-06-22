@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
  * @date:2022/5/13 9:41
  */
 ///每次加载20个，下拉的时候再加载20个，加载到100个就不刷新了
-///等于是个无限加载功能
+///等于是个无限加载功能,无限上拉加载
 class ListInfinite extends StatefulWidget {
   const ListInfinite({Key? key}) : super(key: key);
 
