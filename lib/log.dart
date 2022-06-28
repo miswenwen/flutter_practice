@@ -28,9 +28,9 @@ class Log {
     debugPrint(prefix + msg);
   }
 
-  static void e(String msg, {String tag = ''}) {
+  static void e(var msg, {String tag = ''}) {
     String prefix = tag.length == 0 ? '' : '$tag---';
-    debugPrint(prefix + msg);
+    debugPrint(prefix + msg.toString());
   }
 }
 
