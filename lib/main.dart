@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_practice/widget/GridView/draggable_gridview.dart';
+import 'package:flutter_practice/widget/Positioned/positioned_learn.dart';
 
 /*
 UI的常见嵌套：
@@ -34,7 +34,7 @@ class MyHomePage extends StatelessWidget {
         title: Text('Hello Potter'),
       ),
       body: Container(
-        child: DraggableGridviewTest(),
+        child: PositionedLearn(),
       ),
     );
   }
