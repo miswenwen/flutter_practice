@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_practice/widget/ListView/archor_listview.dart';
+import 'package:flutter_practice/widget/GridView/draggable_gridview.dart';
 
 /*
 UI的常见嵌套：
@@ -34,7 +34,7 @@ class MyHomePage extends StatelessWidget {
         title: Text('Hello Potter'),
       ),
       body: Container(
-        child: ArchorTest(),
+        child: DraggableGridviewTest(),
       ),
     );
   }
