@@ -1,5 +1,6 @@
 void main() {
-  test5();
+  // test5();
+  error2();
 }
 
 ///有onError的时候catchError没效果
@@ -74,4 +75,32 @@ void test6() async {
   }).onError((error, stackTrace) {
     print('onError $error');
   });
+}
+
+///Future的error实际是Future的构造方法，也就是说Future.error实际是一个Future，所以b会跑在它前面
+///就直接这么些，打印log会提示有个Unhandled exception:
+///但是不影响啥
+void error1() {
+  try {
+    print('a');
+    assert(1 == 2);
+  } catch (e) {
+    print(e.toString());
+    Future.error(e);
+    print('b');
+  }
+}
+
+///需要加个onError在未来去handle这个error，说白了就是把error放到未来去处理。
+void error2() {
+  try {
+    print('a');
+    assert(1 == 2);
+  } catch (e) {
+    print(e.toString());
+    Future.error(e).onError((error, stackTrace) {
+      print('ccc $error');
+    });
+    print('b');
+  }
 }
