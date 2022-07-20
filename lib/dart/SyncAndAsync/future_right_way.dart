@@ -5,11 +5,38 @@
  */
 void main() {
   //test3();
-  errorTest3();
+  myErrorA();
+  myErrorB();
 }
 
 ///onError和catchError区别
-///Future.catchError回调只处理原始Future抛出的错误，不能处理回调函数抛出的错误，onError只能处理当前Future的错误：
+///都可以处理调用链的里的异常，例如Future,then,then,then,then,then,最后加个onError或者catchError，其实是等效的。中间有error都能跑进去
+///差异有两点：
+///1.onError可以制定错误类型，比如是数组越界的错误类型，还是网络错误的类型，而且onError可以打印堆栈信息
+///2.then方法是有可选命名参数onError，用于捕获调用这个then的Future所产生的错误，参考errorTest3
+
+///这里的myErrorA和myErrorB是等效的
+void myErrorA() {
+  Future(() {
+    print('a');
+    assert(1 == 2);
+  }).then((value) {
+    print('b');
+  }).catchError((e) {
+    print('catchError $e');
+  });
+}
+
+void myErrorB() {
+  Future(() {
+    print('a');
+    assert(1 == 2);
+  }).then((value) {
+    print('b');
+  }).onError((error, stackTrace) {
+    print('onError $error');
+  });
+}
 
 ///这里走到b程序就退出了
 void errorTest1() {
