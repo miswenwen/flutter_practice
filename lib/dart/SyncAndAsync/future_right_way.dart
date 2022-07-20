@@ -11,9 +11,10 @@ void main() {
 
 ///onError和catchError区别
 ///都可以处理调用链的里的异常，例如Future,then,then,then,then,then,最后加个onError或者catchError，其实是等效的。中间有error都能跑进去
-///差异有两点：
+///差异有三点：
 ///1.onError可以制定错误类型，比如是数组越界的错误类型，还是网络错误的类型，而且onError可以打印堆栈信息
 ///2.then方法是有可选命名参数onError，用于捕获调用这个then的Future所产生的错误，参考errorTest3
+///3.onError默认打印的error信息是比较完整的，api的调用链都能看到，而catchError打印e默认就只有一个是什么类型的错误
 
 ///这里的myErrorA和myErrorB是等效的
 void myErrorA() {
