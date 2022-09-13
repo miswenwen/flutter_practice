@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_practice/widget/Button/button_learn.dart';
+import 'package:flutter_practice/open_source/screen_util/test.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 /*
 UI的常见嵌套：
@@ -19,9 +20,15 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(primarySwatch: Colors.blue),
-      home: MyHomePage(),
+    return ScreenUtilInit(
+      //手机实际宽为360dp，这个估计给大2倍。
+      designSize: const Size(720, 1440),
+      builder: (BuildContext context, Widget? child) {
+        return MaterialApp(
+          theme: ThemeData(primarySwatch: Colors.blue),
+          home: MyHomePage(),
+        );
+      },
     );
   }
 }
@@ -34,7 +41,7 @@ class MyHomePage extends StatelessWidget {
         title: Text('Hello Potter'),
       ),
       body: Container(
-        child: ButtonRoute(),
+        child: ScreenUtilTest(),
       ),
     );
   }

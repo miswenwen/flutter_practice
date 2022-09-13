@@ -1,9 +1,22 @@
-void main() {
-  var arr = [5, 6, 1, 3, 0, 4, 7, 9];
-  var index = [2, 0, 1, 4, 6, 2, 5, 0, 1, 7, 3];
-  var tel = '';
-  for (int i = 0; i < index.length; i++) {
-    tel += arr[index[i]].toString();
+void main() {}
+
+class Rect {
+  var width;
+  var height;
+
+  Rect(this.width, this.height);
+
+  get area => width * height;
+
+  calArea() {
+    return width * height;
   }
-  print(tel);
+
+  set area(a) {}
+
+  final _scale = 1.0;
+  get scale => _scale;
+  getScale() {
+    return _scale;
+  }
 }
