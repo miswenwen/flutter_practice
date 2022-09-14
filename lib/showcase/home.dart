@@ -54,10 +54,13 @@ class HomePage extends StatelessWidget {
       children: [
         CustomAppBarSection(),
         Container(
-          color: Colors.white,
-          margin: EdgeInsets.only(top: 300.w, left: 20.w, right: 20.w),
+          margin: EdgeInsets.only(top: 146.w),
+          padding: EdgeInsets.only(left: 20.w, right: 20.w),
           width: double.infinity,
-          //color: Colors.yellow,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(16.0),
+          ),
           child: Column(
             children: [
               CommonTilesSection(),

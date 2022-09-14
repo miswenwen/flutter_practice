@@ -13,9 +13,13 @@ class AnnouncementSection extends ViewModelWidget<HomePageViewModel> {
   @override
   Widget build(BuildContext context, HomePageViewModel viewModel) {
     return Container(
+      margin: EdgeInsets.only(top: 15.w),
       width: double.infinity,
       height: 76.w,
-      color: Color(0xFFF2F8FF),
+      decoration: BoxDecoration(
+        color: const Color(0xFFF2F8FF),
+        borderRadius: BorderRadius.circular(8.0),
+      ),
     );
   }
 }
