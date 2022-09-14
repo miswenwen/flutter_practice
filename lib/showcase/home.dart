@@ -21,6 +21,9 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<HomePageViewModel>.reactive(
       viewModelBuilder: () => HomePageViewModel(),
+      onModelReady: (viewModel) {
+        viewModel.initialise();
+      },
       builder: (context, model, child) {
         return Stack(
           children: [
@@ -40,8 +43,8 @@ class HomePage extends StatelessWidget {
       child: Image.asset(
         'assets/images/home/bg_frame.png',
         fit: BoxFit.fill,
-        width: 432.w,
-        height: 288.w,
+        width: 375.w,
+        height: 250.w,
       ),
     );
   }
@@ -52,10 +55,9 @@ class HomePage extends StatelessWidget {
         children: [
           CustomAppBarSection(),
           Container(
-            margin: EdgeInsets.only(top: 200.w),
+            margin: EdgeInsets.only(top: 300.w),
             width: double.infinity,
-            height: 5000,
-            color: Colors.yellow,
+            //color: Colors.yellow,
             child: Column(
               children: [
                 CommonTilesSection(),
