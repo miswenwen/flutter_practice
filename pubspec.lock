@@ -462,6 +462,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
+  noripple_overscroll:
+    dependency: "direct main"
+    description:
+      name: noripple_overscroll
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.2"
   package_config:
     dependency: transitive
     description:

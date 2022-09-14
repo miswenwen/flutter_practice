@@ -7,6 +7,7 @@ import 'package:flutter_practice/showcase/section/custom_appbar.dart';
 import 'package:flutter_practice/showcase/section/gov_notices.dart';
 import 'package:flutter_practice/showcase/section/service_tiles.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:noripple_overscroll/noripple_overscroll.dart';
 import 'package:stacked/stacked.dart';
 
 /**
@@ -25,51 +26,49 @@ class HomePage extends StatelessWidget {
         viewModel.initialise();
       },
       builder: (context, model, child) {
-        return Stack(
-          children: [
-            bgFrame(),
-            mainFrame(),
-          ],
+        return NoRippleOverScroll(
+          child: SingleChildScrollView(
+            child: Stack(
+              children: [
+                bgFrame(),
+                mainFrame(),
+              ],
+            ),
+          ),
         );
       },
     );
   }
 
   Widget bgFrame() {
-    return Container(
-      width: double.infinity,
-      height: double.infinity,
-      alignment: Alignment.topCenter,
-      child: Image.asset(
-        'assets/images/home/bg_frame.png',
-        fit: BoxFit.fill,
-        width: 375.w,
-        height: 250.w,
-      ),
+    return Image.asset(
+      'assets/images/home/bg_frame.png',
+      fit: BoxFit.fill,
+      width: 375.w,
+      height: 250.w,
     );
   }
 
   Widget mainFrame() {
-    return Container(
-      child: Column(
-        children: [
-          CustomAppBarSection(),
-          Container(
-            margin: EdgeInsets.only(top: 300.w, left: 20.w, right: 20.w),
-            width: double.infinity,
-            //color: Colors.yellow,
-            child: Column(
-              children: [
-                CommonTilesSection(),
-                AnnouncementSection(),
-                ServiceTilesSection(),
-                BannerSection(),
-                GovNoticesSection(),
-              ],
-            ),
+    return Column(
+      children: [
+        CustomAppBarSection(),
+        Container(
+          color: Colors.white,
+          margin: EdgeInsets.only(top: 300.w, left: 20.w, right: 20.w),
+          width: double.infinity,
+          //color: Colors.yellow,
+          child: Column(
+            children: [
+              CommonTilesSection(),
+              AnnouncementSection(),
+              ServiceTilesSection(),
+              BannerSection(),
+              GovNoticesSection(),
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_practice/showcase/section/common_tiles.dart';
 import 'package:flutter_practice/showcase/section/service_tiles.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:stacked/stacked.dart';
@@ -21,6 +22,8 @@ class HomePageViewModel extends BaseViewModel {
   ///gridview的资源
   List<ServiceTileItem> serviceList = [];
 
+  ///common tiles的资源
+  List<CommonTileItem> commonTileList = [];
   void initialise() async {
     logger.i('initialise');
     prepareDefaultData();
@@ -34,6 +37,7 @@ class HomePageViewModel extends BaseViewModel {
   void prepareDefaultData() {
     prepareBannerRes();
     prepareServicesTileRes();
+    prepareCommonTilesRes();
   }
 
   Future loadRes() {
@@ -42,10 +46,12 @@ class HomePageViewModel extends BaseViewModel {
 
   void prepareBannerRes() {
     bannerResList.add(Image.asset(width: 335.w, height: 83.w, 'assets/images/home/banner_1.png'));
-    bannerResList.add(Image.asset(width: 335.w, height: 83.w, 'assets/images/home/banner_1.png'));
-    bannerResList.add(Image.asset(width: 335.w, height: 83.w, 'assets/images/home/banner_1.png'));
-    bannerResList.add(Image.asset(width: 335.w, height: 83.w, 'assets/images/home/banner_1.png'));
-    bannerResList.add(Image.asset(width: 335.w, height: 83.w, 'assets/images/home/banner_1.png'));
+    bannerResList.add(Image.asset(width: 335.w, height: 83.w, 'assets/images/home/banner_2.png'));
+    //bannerResList.add(Image.asset(width: 335.w, height: 83.w, 'assets/images/home/banner_3.png'));
+    bannerResList.add(Image.asset(width: 335.w, height: 83.w, 'assets/images/home/banner_4.png'));
+    bannerResList.add(Image.asset(width: 335.w, height: 83.w, 'assets/images/home/banner_5.png'));
+    bannerResList.add(Image.asset(width: 335.w, height: 83.w, 'assets/images/home/banner_6.png'));
+    bannerResList.add(Image.asset(width: 335.w, height: 83.w, 'assets/images/home/banner_7.png'));
   }
 
   void prepareServicesTileRes() {
@@ -65,5 +71,12 @@ class HomePageViewModel extends BaseViewModel {
     serviceList.add(ServiceTileItem('assets/images/home/my_pocket.png', '我的钱包'));
     serviceList.add(ServiceTileItem('assets/images/home/visitor_invite.png', '来访邀请'));
     serviceList.add(ServiceTileItem('assets/images/home/more_apps.png', '更多应用'));
+  }
+
+  void prepareCommonTilesRes() {
+    commonTileList.add(CommonTileItem('assets/images/home/contacts.png', '通讯录'));
+    commonTileList.add(CommonTileItem('assets/images/home/attend.png', '考勤签到'));
+    commonTileList.add(CommonTileItem('assets/images/home/house.png', '我的房屋'));
+    commonTileList.add(CommonTileItem('assets/images/home/events.png', '事件管理'));
   }
 }

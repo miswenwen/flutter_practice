@@ -14,16 +14,15 @@ class ServiceTilesSection extends ViewModelWidget<HomePageViewModel> {
   Widget build(BuildContext context, HomePageViewModel viewModel) {
     List<ServiceTile> tiles = [];
     for (ServiceTileItem item in viewModel.serviceList) {
-      tiles.add(ServiceTile(
-        serviceTileItem: item,
-      ));
+      tiles.add(ServiceTile(serviceTileItem: item));
     }
     return Container(
+      //color: Colors.red,
       //margin: EdgeInsets.only(top: 16),
       child: GridView.count(
         shrinkWrap: true,
         padding: EdgeInsets.all(0),
-        mainAxisSpacing: 8,
+        //mainAxisSpacing: 8,
         physics: NeverScrollableScrollPhysics(),
         crossAxisCount: 4,
         //childAspectRatio: aspectRadio,
@@ -42,7 +41,9 @@ class ServiceTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.center,
+      //color: Colors.yellow,
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           Container(
             width: 35.w,
@@ -61,7 +62,10 @@ class ServiceTile extends StatelessWidget {
             ),
           ),
           SizedBox(height: 10.w),
-          Text(serviceTileItem.serviceName),
+          Text(
+            serviceTileItem.serviceName,
+            style: TextStyle(color: Colors.black, fontSize: 14.sp),
+          ),
         ],
       ),
     );
