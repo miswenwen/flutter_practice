@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_practice/showcase/section/service_tiles.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:stacked/stacked.dart';
 
@@ -17,6 +18,9 @@ class HomePageViewModel extends BaseViewModel {
   ///banner的资源
   List<Widget> bannerResList = [];
 
+  ///gridview的资源
+  List<ServiceTileItem> serviceList = [];
+
   void initialise() async {
     logger.i('initialise');
     prepareDefaultData();
@@ -29,6 +33,7 @@ class HomePageViewModel extends BaseViewModel {
 
   void prepareDefaultData() {
     prepareBannerRes();
+    prepareServicesTileRes();
   }
 
   Future loadRes() {
@@ -41,5 +46,24 @@ class HomePageViewModel extends BaseViewModel {
     bannerResList.add(Image.asset(width: 335.w, height: 83.w, 'assets/images/home/banner_1.png'));
     bannerResList.add(Image.asset(width: 335.w, height: 83.w, 'assets/images/home/banner_1.png'));
     bannerResList.add(Image.asset(width: 335.w, height: 83.w, 'assets/images/home/banner_1.png'));
+  }
+
+  void prepareServicesTileRes() {
+    // serviceList.add(ServiceTileItem('assets/images/home/store_house.svg', '数据仓库'));
+    // serviceList.add(ServiceTileItem('assets/images/home/park_service.svg', '园区服务'));
+    // serviceList.add(ServiceTileItem('assets/images/home/secretary_mailbox.svg', '书记信箱'));
+    // serviceList.add(ServiceTileItem('assets/images/home/take_shot.svg', '随手拍'));
+    // serviceList.add(ServiceTileItem('assets/images/home/dairy_manage.svg', '日志管理'));
+    // serviceList.add(ServiceTileItem('assets/images/home/my_pocket.svg', '我的钱包'));
+    // serviceList.add(ServiceTileItem('assets/images/home/visitor_invite.svg', '来访邀请'));
+    // serviceList.add(ServiceTileItem('assets/images/home/more_apps.svg', '更多应用'));
+    serviceList.add(ServiceTileItem('assets/images/home/store_house.png', '数据仓库'));
+    serviceList.add(ServiceTileItem('assets/images/home/park_service.png', '园区服务'));
+    serviceList.add(ServiceTileItem('assets/images/home/secretary_mailbox.png', '书记信箱'));
+    serviceList.add(ServiceTileItem('assets/images/home/take_shot.png', '随手拍'));
+    serviceList.add(ServiceTileItem('assets/images/home/dairy_manage.png', '日志管理'));
+    serviceList.add(ServiceTileItem('assets/images/home/my_pocket.png', '我的钱包'));
+    serviceList.add(ServiceTileItem('assets/images/home/visitor_invite.png', '来访邀请'));
+    serviceList.add(ServiceTileItem('assets/images/home/more_apps.png', '更多应用'));
   }
 }

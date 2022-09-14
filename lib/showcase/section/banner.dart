@@ -13,7 +13,7 @@ import '../home_page_view_model.dart';
  */
 
 ///对比
-///flutter_swiper：3年未更新，不支持null-safety
+///flutter_swiper：3年未更新，不支持null-safety，run args里得新增--no-sound-null-safety,要不然跑不起来
 ///carouselslider: 什么都比flutter_swiper好，唯一的缺点是没有indicator，也就是没有内置那种多个指示点，官方demo也是让自己画 离谱
 class BannerSection extends ViewModelWidget<HomePageViewModel> {
   @override
@@ -37,6 +37,7 @@ class BannerSection extends ViewModelWidget<HomePageViewModel> {
     return Container(
       alignment: Alignment.center,
       width: double.infinity,
+      //color: Colors.yellow,
       height: 83.w,
       child: Swiper(
         scale: 1,

@@ -55,7 +55,7 @@ class HomePage extends StatelessWidget {
         children: [
           CustomAppBarSection(),
           Container(
-            margin: EdgeInsets.only(top: 300.w),
+            margin: EdgeInsets.only(top: 300.w, left: 20.w, right: 20.w),
             width: double.infinity,
             //color: Colors.yellow,
             child: Column(
