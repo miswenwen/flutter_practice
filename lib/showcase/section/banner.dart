@@ -40,6 +40,7 @@ class BannerSection extends ViewModelWidget<HomePageViewModel> {
       //color: Colors.yellow,
       height: 83.w,
       child: Swiper(
+        autoplay: true,
         scale: 1,
         itemCount: viewModel.bannerResList.length,
         index: 0,
