@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:stacked/stacked.dart';
 
 import '../home_page_view_model.dart';
+import '../item.dart';
 
 /**
  * @author:liuqipeng
@@ -59,11 +60,4 @@ class CommonTile extends StatelessWidget {
       ),
     );
   }
-}
-
-class CommonTileItem {
-  final String tileIcon;
-  final String tileName;
-
-  CommonTileItem(this.tileIcon, this.tileName);
 }

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_practice/showcase/section/common_tiles.dart';
-import 'package:flutter_practice/showcase/section/service_tiles.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:stacked/stacked.dart';
 
 import '../log.dart';
+import 'item.dart';
 
 /**
  * @author:liuqipeng
@@ -24,6 +23,10 @@ class HomePageViewModel extends BaseViewModel {
 
   ///common tiles的资源
   List<CommonTileItem> commonTileList = [];
+
+  ///news的资源
+  List<NewsItem> newsList = [];
+
   void initialise() async {
     logger.i('initialise');
     prepareDefaultData();
@@ -38,6 +41,7 @@ class HomePageViewModel extends BaseViewModel {
     prepareBannerRes();
     prepareServicesTileRes();
     prepareCommonTilesRes();
+    prepareNewsRes();
   }
 
   Future loadRes() {
@@ -78,5 +82,13 @@ class HomePageViewModel extends BaseViewModel {
     commonTileList.add(CommonTileItem('assets/images/home/attend.png', '考勤签到'));
     commonTileList.add(CommonTileItem('assets/images/home/house.png', '我的房屋'));
     commonTileList.add(CommonTileItem('assets/images/home/events.png', '事件管理'));
+  }
+
+  void prepareNewsRes() {
+    newsList.add(NewsItem('关于推广数字办公的通知', '关于内部推广数字办公的通知内容的通知...', '2022-08-22 17:00', 'assets/images/home/speaker.png'));
+    newsList.add(NewsItem('关于推广数字办公的通知', '关于内部推广数字办公的通知内容的通知...', '2022-08-22 17:00', 'assets/images/home/speaker.png'));
+    newsList.add(NewsItem('关于推广数字办公的通知', '关于内部推广数字办公的通知内容的通知...', '2022-08-22 17:00', 'assets/images/home/speaker.png'));
+    newsList.add(NewsItem('关于推广数字办公的通知', '关于内部推广数字办公的通知内容的通知...', '2022-08-22 17:00', 'assets/images/home/speaker.png'));
+    newsList.add(NewsItem('关于推广数字办公的通知', '关于内部推广数字办公的通知内容的通知...', '2022-08-22 17:00', 'assets/images/home/speaker.png'));
   }
 }

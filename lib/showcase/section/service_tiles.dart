@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:stacked/stacked.dart';
 
 import '../home_page_view_model.dart';
+import '../item.dart';
 
 /**
  * @author:liuqipeng
@@ -70,11 +71,4 @@ class ServiceTile extends StatelessWidget {
       ),
     );
   }
-}
-
-class ServiceTileItem {
-  final String serviceIcon;
-  final String serviceName;
-
-  ServiceTileItem(this.serviceIcon, this.serviceName);
 }
