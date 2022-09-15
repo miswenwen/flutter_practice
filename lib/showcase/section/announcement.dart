@@ -87,7 +87,7 @@ class AnnouncementSection extends ViewModelWidget<HomePageViewModel> {
             Text(
               '纪检组于近日到访督查，请各单位积极配合,有问题及时反馈，请点对点传达...',
               style: TextStyle(
-                color: Color(0xFF94A1C2),
+                color: const Color(0xFF94A1C2),
                 fontSize: 12.sp,
               ),
               maxLines: 2,

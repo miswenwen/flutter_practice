@@ -38,6 +38,7 @@ class BannerSection extends ViewModelWidget<HomePageViewModel> {
       alignment: Alignment.center,
       width: double.infinity,
       //color: Colors.yellow,
+      margin: EdgeInsets.only(top: 10.w),
       height: 83.w,
       child: Swiper(
         autoplay: true,
@@ -48,7 +49,7 @@ class BannerSection extends ViewModelWidget<HomePageViewModel> {
         itemBuilder: (BuildContext context, int index) {
           return viewModel.bannerResList[index];
         },
-        pagination: SwiperPagination(
+        pagination: const SwiperPagination(
           margin: EdgeInsets.all(0),
           builder: DotSwiperPaginationBuilder(
             size: 4,

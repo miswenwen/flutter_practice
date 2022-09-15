@@ -14,7 +14,7 @@ class GovNoticesSection extends ViewModelWidget<HomePageViewModel> {
   @override
   Widget build(BuildContext context, HomePageViewModel viewModel) {
     return Container(
-      margin: EdgeInsets.only(top: 18.w),
+      margin: EdgeInsets.only(top: 10.w),
       child: Column(
         children: [
           titleArea(),

@@ -22,8 +22,8 @@ class CommonTilesSection extends ViewModelWidget<HomePageViewModel> {
       margin: EdgeInsets.only(top: 20.w),
       child: GridView.count(
         shrinkWrap: true,
-        padding: EdgeInsets.all(0),
-        physics: NeverScrollableScrollPhysics(),
+        padding: const EdgeInsets.all(0),
+        physics: const NeverScrollableScrollPhysics(),
         crossAxisCount: 4,
         childAspectRatio: 1 / 1.1,
         children: tiles,

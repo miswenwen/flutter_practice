@@ -19,12 +19,12 @@ class ServiceTilesSection extends ViewModelWidget<HomePageViewModel> {
     }
     return Container(
       //color: Colors.red,
-      //margin: EdgeInsets.only(top: 16),
+      margin: EdgeInsets.only(top: 8.w),
       child: GridView.count(
         shrinkWrap: true,
-        padding: EdgeInsets.all(0),
+        padding: const EdgeInsets.all(0),
         //mainAxisSpacing: 8,
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         crossAxisCount: 4,
         //childAspectRatio: aspectRadio,
         children: tiles,
