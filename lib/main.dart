@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_practice/widget/InheritedWidget/inherited_learn.dart';
+import 'package:flutter_practice/widget/SafeArea/test.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 /*
@@ -68,11 +68,11 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Hello Potter'),
-      ),
+      // appBar: AppBar(
+      //   title: Text('Hello Potter'),
+      // ),
       body: Container(
-        child: AA(),
+        child: SafeAreaTest(),
       ),
     );
   }
