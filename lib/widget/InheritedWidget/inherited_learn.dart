@@ -3,61 +3,56 @@ import 'package:flutter/material.dart';
 ///Widget树从上到下共享数据
 ///abstract class InheritedWidget extends ProxyWidget,注意它是个抽象类
 ///abstract class ProxyWidget extends Widget
-class InheritedWidgetLearn extends StatefulWidget {
-  const InheritedWidgetLearn({Key? key}) : super(key: key);
+///可以说flutter的几大widget分别是StatelessWidget,StatefulWidget,InheritedWidget,<RenderObjectWidget>
 
-  @override
-  State<InheritedWidgetLearn> createState() => _InheritedWidgetLearnState();
+///假设A Widget包了B和C两个Widget，内部要传输Person这个数据，首先看不用InheritedWidget我们会怎么写
+///我们需要把Persion从BBB和CCC的构造方法里传进去。
+///其实这个场景，我们自己在使用Stack这个mvvm框架，widget树里需要传输viewmodel的时候经常就用到了这种写法，我自己已经意识到是种很糟糕的写法了
+///如果有N个子Widget，M个数据要共享，这不是芭比Q了。
+
+class Person {
+  final String name;
+  final int age;
+
+  Person(this.name, this.age);
 }
 
-class _InheritedWidgetLearnState extends State<InheritedWidgetLearn> {
+class AAA extends StatelessWidget {
+  final Person person;
+
+  const AAA(this.person, {Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Column(
+      children: [
+        BBB(person),
+        CCC(person),
+      ],
+    );
   }
 }
 
-class ShareDataWidget extends InheritedWidget {
-  final int data; //需要在子树中共享的数据，保存点击次数
-  ShareDataWidget({
-    Key? key,
-    required this.data,
-    required Widget child,
-  }) : super(key: key, child: child);
+class BBB extends StatelessWidget {
+  final Person person;
+  const BBB(this.person, {Key? key}) : super(key: key);
 
-  //定义一个便捷方法，方便子树中的widget获取共享数据
-  static ShareDataWidget? of(BuildContext context) {
-    return context.dependOnInheritedWidgetOfExactType<ShareDataWidget>();
-    // return context.getElementForInheritedWidgetOfExactType<ShareDataWidget>()!.widget;
-  }
-
-  ///这个是重写方法，该回调决定当data发生变化时，是否通知子树中依赖data的Widget重新build
-  ///covariant  协变，参考https://blog.csdn.net/brooksjames/article/details/114485083
   @override
-  bool updateShouldNotify(covariant ShareDataWidget oldWidget) {
-    // TODO: implement updateShouldNotify
-    return oldWidget.data != data;
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text(person.name),
+    );
   }
 }
 
-///covariant的使用
-abstract class Text {
-  bool doSth(num data);
-  //bool doSth2(num data);
-}
+class CCC extends StatelessWidget {
+  final Person person;
+  const CCC(this.person, {Key? key}) : super(key: key);
 
-class SSS extends Text {
   @override
-  bool doSth(covariant int data) {
-    // TODO: implement doSth
-    throw UnimplementedError();
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text(person.name),
+    );
   }
-
-  ///没有covariant 会报错
-  // @override
-  // bool doSth2(int data) {
-  //   // TODO: implement doSth2
-  //   throw UnimplementedError();
-  // }
-
 }
