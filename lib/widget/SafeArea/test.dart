@@ -12,8 +12,8 @@ class SafeAreaTest extends StatelessWidget {
   Widget build(BuildContext context) {
     //scaffold没有appbar的时候，如果不用SafeArea包，文本会直接冲到StatusBar里面去
     return SafeArea(
-      top: false,
-      child: Text('data'),
+      top: true,
+      child: Opacity(opacity: 1, child: Text('data')),
     );
     //return Text('data');
   }
