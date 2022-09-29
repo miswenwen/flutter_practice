@@ -53,6 +53,7 @@ dependencies:
   flutter_swiper: ^1.1.6 #banner
   noripple_overscroll: ^0.0.2
   get: ^4.6.5
+  fl_chart: ^0.55.2
 
 dev_dependencies:
   flutter_test:

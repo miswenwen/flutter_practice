@@ -1,11 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_practice/widget/SafeArea/test.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
 
-import 'open_source/get/mainpage.dart';
+import 'open_source/fl_chart/test.dart';
 
 /*
 UI的常见嵌套：
@@ -36,8 +34,8 @@ void main() async {
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
-  //runApp(MyApp());
-  runApp(GetMaterialApp(home: Home()));
+  runApp(MyApp());
+  //runApp(GetMaterialApp(home: Home()));
 }
 
 class MyApp extends StatelessWidget {
@@ -72,11 +70,13 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text('Hello Potter'),
-      // ),
+      appBar: AppBar(
+        title: Text('Hello Potter'),
+      ),
       body: Container(
-        child: SafeAreaTest(),
+        //padding: EdgeInsets.only(top: 20),
+        alignment: Alignment.topLeft,
+        child: VisitorLineChart(),
       ),
     );
   }
