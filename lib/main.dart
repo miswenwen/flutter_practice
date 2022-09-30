@@ -1,9 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_practice/widget/ClipRRect/test.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import 'open_source/flutter_widget_from_html/test.dart';
 
 /*
 UI的常见嵌套：
@@ -77,7 +76,7 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Hello Potter'),
       ),
-      body: TagsParserTest(),
+      body: ClipLearn(),
     );
   }
 }
