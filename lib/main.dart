@@ -1,8 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_practice/widget/ClipRRect/test.dart';
+import 'package:flutter_practice/widget/Hero/test.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 /*
 UI的常见嵌套：
@@ -33,8 +34,9 @@ void main() async {
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
-  runApp(MyApp());
+  //runApp(MyApp());
   //runApp(GetMaterialApp(home: Home()));
+  runApp(GetMaterialApp(home: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -76,7 +78,7 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Hello Potter'),
       ),
-      body: ClipLearn(),
+      body: HeroLearn(),
     );
   }
 }

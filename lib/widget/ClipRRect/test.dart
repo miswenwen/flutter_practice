@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
  * @description:
  * @date:2022/5/13 9:41
  */
+
+//除了ClipOval，ClipRRect外，还有ClipPath，可以自定义裁剪的曲线，贝塞尔曲线，折线等
 class ClipLearn extends StatefulWidget {
   const ClipLearn({Key? key}) : super(key: key);
 
