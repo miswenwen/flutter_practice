@@ -1,11 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_practice/widget/Tooltip/test.dart';
+import 'package:flutter_practice/widget/AspectRadio/test.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
-
-import 'open_source/introduction_screen/test.dart';
 
 /*
 UI的常见嵌套：
@@ -51,8 +49,8 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: ThemeData(primarySwatch: Colors.blue),
-          home: OnBoardingPage(),
-          //home: MyHomePage(),
+          //home: OnBoardingPage(),
+          home: MyHomePage(),
         );
       },
     );
@@ -81,7 +79,7 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Hello Potter'),
       ),
-      body: TooltipLearn(),
+      body: AspectRadioLearn(),
     );
   }
 }
