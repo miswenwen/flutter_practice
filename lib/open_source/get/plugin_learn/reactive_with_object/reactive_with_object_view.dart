@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../log.dart';
 import 'reactive_with_object_controller.dart';
 
 class ReactiveWithObjectPage extends StatefulWidget {
@@ -15,6 +16,7 @@ class _ReactiveWithObjectPageState extends State<ReactiveWithObjectPage> {
 
   @override
   Widget build(BuildContext context) {
+    Log.e('build begin', tag: 'aaa');
     return Container(
       alignment: Alignment.center,
       child: Obx(() {
@@ -43,7 +45,14 @@ class _ReactiveWithObjectPageState extends State<ReactiveWithObjectPage> {
   }
 
   @override
+  void initState() {
+    Log.e('initState', tag: 'aaa');
+    super.initState();
+  }
+
+  @override
   void dispose() {
+    Log.e('dispose', tag: 'aaa');
     Get.delete<ReactiveWithObjectController>();
     super.dispose();
   }
