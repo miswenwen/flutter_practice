@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_practice/open_source/get/plugin_learn/reactive_with_object/reactive_with_object_view.dart';
+import 'package:flutter_practice/open_source/get/plugin_learn/data_pass/a/a_view.dart';
 import 'package:get/get.dart';
 
 import 'locale/messages.dart';
@@ -33,7 +33,7 @@ class Learn extends StatelessWidget {
       ),
       body: Container(
         alignment: Alignment.center,
-        child: ReactiveWithObjectPage(),
+        child: APage(),
       ),
     );
   }

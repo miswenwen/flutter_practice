@@ -16,6 +16,12 @@ class ReactiveWithObjectController extends GetxController {
   ///
   /// 和Stacked的onModelReady的回调是一个东西，也就是ReactiveWithObjectController创建的时候就会回调
   /// View层需要的第一帧的数据可以在这里初始化
+  /// A路由跳转B路由传递的数据也可以在这里接收
+  ///传递
+  ///Get.to(BPage, arguments: {'msg': '12345'});
+  ///接收
+  ///var map = Get.arguments;
+  ///var msg = map['msg'];
   @override
   void onInit() {
     Log.e('onInit begin', tag: 'aaa');
