@@ -54,6 +54,15 @@ class Home extends StatelessWidget {
   ///说是permanent:false绑定的是navigation stack，也就是只要路由栈里没有清空，就不销毁，而permanent:true则是整个应用的生命周期，因为有些应用以android为例，可以只有service没有activity
   ///如果是这样的话，倒是可以解释的通我上面的实测结果，也可以解释官方demo，在路由栈非空，跳转路由的时候，它的demo没有把permanent指定为true。
   ///那这样的话移动的大部分需求，其实用默认的false就够了
+
+  ///由于Controller的生命周期是可控的。
+  ///对应用开发来说
+  ///1.比如我们平时App单例用来放全局变量的。完全可以用个GlobalController，里面放全局数据。用于响应式数据刷新更直观。此时permanent给true好点。
+  ///2.单个模块，N个路由，但是数据有关联性。可以搞XXXModelController
+  ///3.单个路由，XXXPageController
+  ///自己把我好Controller的回收时机
+  ///对于case3：可以stfWidget的onDispose里Get.delete<XXXPageController>();实测有效
+  ///对于case2：这个回收的时机其实有有点不好把握了，因为模块的退出时机可能有多个。而且重复delete是否会报错我也没试过，如果会报错要加个isDeleted的判断
   final MyController controller = Get.put(MyController());
   int intTest = 10;
 
