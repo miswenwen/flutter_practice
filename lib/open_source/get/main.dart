@@ -63,6 +63,9 @@ class Home extends StatelessWidget {
   ///自己把我好Controller的回收时机
   ///对于case3：可以stfWidget的onDispose里Get.delete<XXXPageController>();实测有效
   ///对于case2：这个回收的时机其实有有点不好把握了，因为模块的退出时机可能有多个。而且重复delete是否会报错我也没试过，如果会报错要加个isDeleted的判断
+
+  ///controller的生命周期比组件/路由的生命周期长会导致内存泄漏吗？
+  ///
   final MyController controller = Get.put(MyController());
   int intTest = 10;
 
