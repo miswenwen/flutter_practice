@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_practice/open_source/get/plugin_learn/ez_way_reactive/ez_way_reactive_view.dart';
+import 'package:flutter_practice/open_source/get/plugin_learn/reactive_with_object/reactive_with_object_view.dart';
 import 'package:get/get.dart';
 
 import 'locale/messages.dart';
@@ -33,7 +33,7 @@ class Learn extends StatelessWidget {
       ),
       body: Container(
         alignment: Alignment.center,
-        child: EzWayReactivePage(),
+        child: ReactiveWithObjectPage(),
       ),
     );
   }
