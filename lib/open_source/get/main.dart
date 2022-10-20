@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_practice/open_source/get/plugin_learn/easy_way/easy_way_view.dart';
+import 'package:flutter_practice/open_source/get/plugin_learn/ez_way_reactive/ez_way_reactive_view.dart';
 import 'package:get/get.dart';
 
 import 'locale/messages.dart';
@@ -11,7 +11,7 @@ import 'locale/messages.dart';
 void main() {
   runApp(
     GetMaterialApp(
-      home: EasyWayPage(),
+      home: Learn(),
       translations: Messages(),
       //正常用这个即可，除非想要锁死成某种语言不跟系统语言变才定死
       locale: Get.deviceLocale,
@@ -20,6 +20,23 @@ void main() {
       fallbackLocale: Locale('en', 'US'),
     ),
   );
+}
+
+class Learn extends StatelessWidget {
+  const Learn({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('LearnGet'),
+      ),
+      body: Container(
+        alignment: Alignment.center,
+        child: EzWayReactivePage(),
+      ),
+    );
+  }
 }
 
 class Home extends StatelessWidget {

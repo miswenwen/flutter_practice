@@ -11,6 +11,7 @@ class EasyWayPage extends StatefulWidget {
 }
 
 class _EasyWayPageState extends State<EasyWayPage> {
+  //controller对象的实例化有两种方式，一个是这里的，Get.put.还有一种是GetBuilder的init参数里init: EasyWayController()
   final easyWayController = Get.put(EasyWayController());
 
   @override
