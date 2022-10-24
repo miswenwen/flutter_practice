@@ -20,7 +20,7 @@ class _PaymentDetailedPageState extends State<PaymentDetailedPage> {
       backgroundColor: Color(0xFFF7F7F7),
       body: WithToolbar(
         title: '账单详情',
-        child: mainArea(),
+        child: FeeDetailedTile(),
       ),
     );
   }

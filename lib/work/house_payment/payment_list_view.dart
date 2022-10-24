@@ -23,7 +23,7 @@ class _PaymentListPageState extends State<PaymentListPage> {
       backgroundColor: Color(0xFFF7F7F7),
       body: WithToolbar(
         title: '欠费缴费',
-        child: mainArea(),
+        child: Expanded(child: mainArea()),
       ),
     );
   }

@@ -29,7 +29,7 @@ class _WithToolbarState extends State<WithToolbar> {
     return Column(
       children: [
         toolbar(),
-        Expanded(child: widget.child ?? Container()),
+        widget.child ?? Container(),
       ],
     );
   }
