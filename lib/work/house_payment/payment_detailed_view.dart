@@ -51,7 +51,7 @@ class _PaymentDetailedPageState extends State<PaymentDetailedPage> {
                   color: Colors.transparent,
                 );
               },
-              itemCount: 5,
+              itemCount: 1,
             ),
           ),
         );
@@ -73,8 +73,72 @@ class _FeeDetailedTileState extends State<FeeDetailedTile> {
     return Card(
       child: Container(
         width: double.infinity,
-        height: 50,
-        color: Colors.red,
+        color: Colors.white,
+        padding: const EdgeInsets.only(left: 15, right: 15, top: 12, bottom: 9),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              '锦绣花园社区',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            SizedBox(
+              height: 8,
+            ),
+            Text(
+              '欠费',
+              style: TextStyle(
+                color: Color(0xFFF26752),
+                fontSize: 12,
+              ),
+            ),
+            Text(
+              '2875.36',
+              style: TextStyle(
+                color: Color(0xFFF26752),
+                fontSize: 30,
+              ),
+            ),
+            InfoLine(),
+            InfoLine(),
+            InfoLine(),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class InfoLine extends StatelessWidget {
+  const InfoLine({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 5),
+      child: Row(
+        children: [
+          Text(
+            'aaa',
+            style: TextStyle(
+              color: Color(0xFF666666),
+              fontSize: 13,
+            ),
+          ),
+          Spacer(),
+          Text(
+            'bbb',
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 13,
+            ),
+          )
+        ],
       ),
     );
   }

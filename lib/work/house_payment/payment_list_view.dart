@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_practice/work/house_payment/payment_detailed_view.dart';
 import 'package:get/get.dart';
 import 'package:noripple_overscroll/noripple_overscroll.dart';
 
@@ -151,53 +152,58 @@ class ExpenseTile extends StatefulWidget {
 class _ExpenseTileState extends State<ExpenseTile> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      color: randomColor(),
-      height: 60,
-      padding: const EdgeInsets.only(left: 20, right: 10, top: 10, bottom: 10),
-      child: Row(
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              LimitedBox(
-                maxWidth: 200,
-                child: Text(
-                  '小区',
-                  maxLines: 1,
-                  style: TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w500),
+    return GestureDetector(
+      onTap: () {
+        Get.to(PaymentDetailedPage());
+      },
+      child: Container(
+        width: double.infinity,
+        color: randomColor(),
+        height: 60,
+        padding: const EdgeInsets.only(left: 20, right: 10, top: 10, bottom: 10),
+        child: Row(
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                LimitedBox(
+                  maxWidth: 200,
+                  child: Text(
+                    '小区',
+                    maxLines: 1,
+                    style: TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w500),
+                  ),
                 ),
-              ),
-              Spacer(),
-              LimitedBox(
-                maxWidth: 200,
-                child: Text(
-                  '1号楼' * 30,
-                  maxLines: 1,
-                  style: TextStyle(color: Color(0xFF666666), fontSize: 12),
+                Spacer(),
+                LimitedBox(
+                  maxWidth: 200,
+                  child: Text(
+                    '1号楼' * 30,
+                    maxLines: 1,
+                    style: TextStyle(color: Color(0xFF666666), fontSize: 12),
+                  ),
                 ),
-              ),
-            ],
-          ),
-          Spacer(),
-          Text(
-            '2875.36',
-            style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.w500),
-          ),
-          SizedBox(
-            width: 13.5,
-          ),
-          Icon(
-            Icons.arrow_forward_ios,
-            size: 12,
-          ),
-          // Image.asset(
-          //   'assets/images/home/arrows.png',
-          //   width: 12,
-          //   height: 12,
-          // )
-        ],
+              ],
+            ),
+            Spacer(),
+            Text(
+              '2875.36',
+              style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.w500),
+            ),
+            SizedBox(
+              width: 13.5,
+            ),
+            Icon(
+              Icons.arrow_forward_ios,
+              size: 12,
+            ),
+            // Image.asset(
+            //   'assets/images/home/arrows.png',
+            //   width: 12,
+            //   height: 12,
+            // )
+          ],
+        ),
       ),
     );
   }
