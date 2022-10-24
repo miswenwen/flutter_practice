@@ -61,17 +61,25 @@ class _WithToolbarState extends State<WithToolbar> {
                   widget.backBehavior!();
                 }
               },
+              // child: Container(
+              //   width: 30,
+              //   height: double.infinity,
+              //   child: Image.asset(
+              //     'assets/images/home/contacts.png',
+              //     height: 18,
+              //     width: 10,
+              //   ),
+              // ),
               child: Container(
-                width: 30,
+                width: 40,
                 height: double.infinity,
-                child: Image.asset(
-                  'assets/images/home/contacts.png',
-                  height: 18,
-                  width: 10,
+                child: Icon(
+                  Icons.arrow_back_ios,
+                  size: 17,
                 ),
               ),
             ),
-          )
+          ),
         ],
       ),
     );

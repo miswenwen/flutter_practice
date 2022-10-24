@@ -91,15 +91,6 @@ class _PaymentListPageState extends State<PaymentListPage> {
                   '立即缴费',
                   style: TextStyle(color: Colors.white, fontSize: 16),
                 ),
-                // child: Container(
-                //   height: 35,
-                //   width: 100,
-                //   alignment: Alignment.center,
-                //   child: Text(
-                //     '立即缴费',
-                //     style: TextStyle(color: Colors.white, fontSize: 16),
-                //   ),
-                // ),
               ),
             )
           ],
@@ -159,15 +150,24 @@ class _ExpenseTileState extends State<ExpenseTile> {
       child: Row(
         children: [
           Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                '小区',
-                style: TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w500),
+              LimitedBox(
+                maxWidth: 200,
+                child: Text(
+                  '小区' * 30,
+                  maxLines: 1,
+                  style: TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w500),
+                ),
               ),
               Spacer(),
-              Text(
-                '1号楼',
-                style: TextStyle(color: Color(0xFF666666), fontSize: 12),
+              LimitedBox(
+                maxWidth: 200,
+                child: Text(
+                  '1号楼' * 30,
+                  maxLines: 1,
+                  style: TextStyle(color: Color(0xFF666666), fontSize: 12),
+                ),
               ),
             ],
           ),
@@ -179,11 +179,15 @@ class _ExpenseTileState extends State<ExpenseTile> {
           SizedBox(
             width: 13.5,
           ),
-          Image.asset(
-            'assets/images/home/contacts.png',
-            width: 12,
-            height: 12,
-          )
+          Icon(
+            Icons.arrow_forward_ios,
+            size: 12,
+          ),
+          // Image.asset(
+          //   'assets/images/home/arrows.png',
+          //   width: 12,
+          //   height: 12,
+          // )
         ],
       ),
     );
