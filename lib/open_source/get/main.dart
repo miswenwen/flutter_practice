@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_practice/open_source/get/plugin_learn/data_pass/a/a_view.dart';
 import 'package:get/get.dart';
 
+import '../../work/house_payment/payment_list_view.dart';
 import 'locale/messages.dart';
 
 //GetMaterialApp will create routes, inject them, inject translations, inject everything you need for route navigation.
@@ -28,12 +28,12 @@ class Learn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('LearnGet'),
-      ),
+      // appBar: AppBar(
+      //   title: Text('LearnGet'),
+      // ),
       body: Container(
         alignment: Alignment.center,
-        child: APage(),
+        child: PaymentListPage(),
       ),
     );
   }

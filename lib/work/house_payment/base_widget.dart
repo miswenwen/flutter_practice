@@ -27,7 +27,7 @@ class _WithToolbarState extends State<WithToolbar> {
     return Column(
       children: [
         toolbar(),
-        widget.child ?? Container(),
+        Expanded(child: widget.child ?? Container()),
       ],
     );
   }
@@ -65,7 +65,7 @@ class _WithToolbarState extends State<WithToolbar> {
                 width: 30,
                 height: double.infinity,
                 child: Image.asset(
-                  '',
+                  'assets/images/home/contacts.png',
                   height: 18,
                   width: 10,
                 ),
