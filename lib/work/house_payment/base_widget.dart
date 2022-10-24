@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 /**
@@ -84,4 +86,13 @@ class _WithToolbarState extends State<WithToolbar> {
       ),
     );
   }
+}
+
+int random(int min, int max) {
+  final _random = Random();
+  return min + _random.nextInt(max - min + 1);
+}
+
+Color randomColor() {
+  return Color.fromARGB(random(150, 255), random(0, 255), random(0, 255), random(0, 255));
 }

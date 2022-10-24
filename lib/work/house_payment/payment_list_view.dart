@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:noripple_overscroll/noripple_overscroll.dart';
 
 import 'base_widget.dart';
 import 'payment_list_controller.dart';
 
+//考虑到费用列表不像新闻列表那样会很长甚至无限加载，最多也就个3,5屏，做成一次性加载算了
 class PaymentListPage extends StatefulWidget {
   const PaymentListPage({Key? key}) : super(key: key);
 
@@ -37,14 +39,20 @@ class _PaymentListPageState extends State<PaymentListPage> {
       builder: (controller) {
         return Container(
           height: double.infinity,
-          padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              totalFeeSection(),
-              SizedBox(height: 22),
-              Expanded(child: expenseListSection()),
-            ],
+          padding: const EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 0),
+          child: NoRippleOverScroll(
+            child: Container(
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    totalFeeSection(),
+                    SizedBox(height: 22),
+                    expenseListSection(),
+                  ],
+                ),
+              ),
+            ),
           ),
         );
       },
@@ -98,6 +106,7 @@ class _PaymentListPageState extends State<PaymentListPage> {
   }
 
   Widget expenseListSection() {
+    int count = 25;
     return MediaQuery.removePadding(
       context: Get.context!,
       removeTop: true,
@@ -109,7 +118,7 @@ class _PaymentListPageState extends State<PaymentListPage> {
               child: ExpenseTile(),
             );
           }
-          if (index == 2) {
+          if (index == count - 1) {
             return ClipRRect(
               borderRadius: BorderRadius.only(bottomLeft: Radius.circular(5), bottomRight: Radius.circular(5)),
               child: ExpenseTile(),
@@ -126,7 +135,7 @@ class _PaymentListPageState extends State<PaymentListPage> {
         },
         physics: NeverScrollableScrollPhysics(),
         shrinkWrap: true,
-        itemCount: 3,
+        itemCount: count,
       ),
     );
   }
@@ -144,7 +153,7 @@ class _ExpenseTileState extends State<ExpenseTile> {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      color: Colors.white,
+      color: randomColor(),
       height: 60,
       padding: const EdgeInsets.only(left: 20, right: 10, top: 10, bottom: 10),
       child: Row(
@@ -155,7 +164,7 @@ class _ExpenseTileState extends State<ExpenseTile> {
               LimitedBox(
                 maxWidth: 200,
                 child: Text(
-                  '小区' * 30,
+                  '小区',
                   maxLines: 1,
                   style: TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w500),
                 ),
