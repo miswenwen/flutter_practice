@@ -107,12 +107,20 @@ class _PaymentListPageState extends State<PaymentListPage> {
   }
 
   Widget expenseListSection() {
-    int count = 3;
+    int count = 15;
+    BorderRadius borderRadius;
     return MediaQuery.removePadding(
       context: Get.context!,
       removeTop: true,
       child: ListView.separated(
         itemBuilder: (BuildContext context, int index) {
+          //只有一项的时候，四个角全clip
+          if (count == 1) {
+            return ClipRRect(
+              borderRadius: BorderRadius.all(Radius.circular(5)),
+              child: ExpenseTile(index: index),
+            );
+          }
           if (index == 0) {
             return ClipRRect(
               borderRadius: BorderRadius.only(topLeft: Radius.circular(5), topRight: Radius.circular(5)),
@@ -144,6 +152,7 @@ class _PaymentListPageState extends State<PaymentListPage> {
 
 class ExpenseTile extends StatefulWidget {
   final int index;
+
   const ExpenseTile({Key? key, required this.index}) : super(key: key);
 
   @override
@@ -159,53 +168,55 @@ class _ExpenseTileState extends State<ExpenseTile> {
       },
       child: Hero(
         tag: 'pay_detailed${widget.index}',
-        child: Container(
-          width: double.infinity,
-          color: randomColor(),
-          height: 60,
-          padding: const EdgeInsets.only(left: 20, right: 10, top: 10, bottom: 10),
-          child: Row(
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  LimitedBox(
-                    maxWidth: 200,
-                    child: Text(
-                      '小区',
-                      maxLines: 1,
-                      style: TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w500),
+        child: Material(
+          child: Container(
+            width: double.infinity,
+            color: randomColor(),
+            height: 60,
+            padding: const EdgeInsets.only(left: 20, right: 10, top: 10, bottom: 10),
+            child: Row(
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    LimitedBox(
+                      maxWidth: 200,
+                      child: Text(
+                        '小区',
+                        maxLines: 1,
+                        style: TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w500),
+                      ),
                     ),
-                  ),
-                  Spacer(),
-                  LimitedBox(
-                    maxWidth: 200,
-                    child: Text(
-                      '1号楼' * 30,
-                      maxLines: 1,
-                      style: TextStyle(color: Color(0xFF666666), fontSize: 12),
+                    Spacer(),
+                    LimitedBox(
+                      maxWidth: 200,
+                      child: Text(
+                        '1号楼' * 30,
+                        maxLines: 1,
+                        style: TextStyle(color: Color(0xFF666666), fontSize: 12),
+                      ),
                     ),
-                  ),
-                ],
-              ),
-              Spacer(),
-              Text(
-                '2875.36',
-                style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.w500),
-              ),
-              SizedBox(
-                width: 13.5,
-              ),
-              Icon(
-                Icons.arrow_forward_ios,
-                size: 12,
-              ),
-              // Image.asset(
-              //   'assets/images/home/arrows.png',
-              //   width: 12,
-              //   height: 12,
-              // )
-            ],
+                  ],
+                ),
+                Spacer(),
+                Text(
+                  '2875.36',
+                  style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.w500),
+                ),
+                SizedBox(
+                  width: 13.5,
+                ),
+                Icon(
+                  Icons.arrow_forward_ios,
+                  size: 12,
+                ),
+                // Image.asset(
+                //   'assets/images/home/arrows.png',
+                //   width: 12,
+                //   height: 12,
+                // )
+              ],
+            ),
           ),
         ),
       ),
