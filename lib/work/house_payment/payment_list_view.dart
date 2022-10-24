@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_practice/work/house_payment/payment_detailed_view.dart';
 import 'package:get/get.dart';
 import 'package:noripple_overscroll/noripple_overscroll.dart';
+import 'package:sticky_headers/sticky_headers/widget.dart';
 
 import 'base_widget.dart';
 import 'payment_list_controller.dart';
@@ -20,7 +21,7 @@ class _PaymentListPageState extends State<PaymentListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF7F7F7),
+      backgroundColor: const Color(0xFFF7F7F7),
       body: WithToolbar(
         title: '欠费缴费',
         child: Expanded(child: mainArea()),
@@ -42,17 +43,24 @@ class _PaymentListPageState extends State<PaymentListPage> {
           height: double.infinity,
           padding: const EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 0),
           child: NoRippleOverScroll(
-            child: Container(
-              child: SingleChildScrollView(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
+            child: SingleChildScrollView(
+              child: StickyHeader(
+                header: totalFeeSection(),
+                content: Column(
                   children: [
-                    totalFeeSection(),
-                    SizedBox(height: 22),
+                    const SizedBox(height: 22),
                     expenseListSection(),
                   ],
                 ),
               ),
+              // child: Column(
+              //   mainAxisSize: MainAxisSize.min,
+              //   children: [
+              //     totalFeeSection(),
+              //
+              //     expenseListSection(),
+              //   ],
+              // ),
             ),
           ),
         );
@@ -62,48 +70,52 @@ class _PaymentListPageState extends State<PaymentListPage> {
 
   ///用sticky_headers这个库来把Header实现冻结窗格的效果，官方库
   Widget totalFeeSection() {
+    //多包一层，圆角后面给一层颜色，要不然滑动的时候底部的ListViewTile会从圆角那漏出来
     return Container(
-        width: double.infinity,
-        height: 80,
-        decoration: const BoxDecoration(
-          color: Color(0xFF1890FF),
-          borderRadius: BorderRadius.all(Radius.circular(5)),
-        ),
-        padding: const EdgeInsets.only(top: 11, bottom: 11, left: 20, right: 18.5),
-        child: Stack(
-          children: [
-            Align(
-              alignment: Alignment.topLeft,
-              child: Text(
-                '欠费总计',
-                style: TextStyle(color: Colors.white, fontSize: 14),
-              ),
-            ),
-            Align(
-              alignment: Alignment.bottomLeft,
-              child: Text(
-                '2875.36',
-                style: TextStyle(color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold),
-              ),
-            ),
-            Align(
-              alignment: Alignment.centerRight,
-              child: OutlinedButton(
-                style: OutlinedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  side: BorderSide(width: 1, color: Colors.white),
-                ),
-                onPressed: () {},
+      color: const Color(0xFFF7F7F7),
+      child: Container(
+          width: double.infinity,
+          height: 80,
+          decoration: const BoxDecoration(
+            color: Color(0xFF1890FF),
+            borderRadius: BorderRadius.all(Radius.circular(5)),
+          ),
+          padding: const EdgeInsets.only(top: 11, bottom: 11, left: 20, right: 18.5),
+          child: Stack(
+            children: [
+              Align(
+                alignment: Alignment.topLeft,
                 child: Text(
-                  '立即缴费',
-                  style: TextStyle(color: Colors.white, fontSize: 16),
+                  '欠费总计',
+                  style: TextStyle(color: Colors.white, fontSize: 14),
                 ),
               ),
-            )
-          ],
-        ));
+              Align(
+                alignment: Alignment.bottomLeft,
+                child: Text(
+                  '2875.36',
+                  style: TextStyle(color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold),
+                ),
+              ),
+              Align(
+                alignment: Alignment.centerRight,
+                child: OutlinedButton(
+                  style: OutlinedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    side: BorderSide(width: 1, color: Colors.white),
+                  ),
+                  onPressed: () {},
+                  child: Text(
+                    '立即缴费',
+                    style: TextStyle(color: Colors.white, fontSize: 16),
+                  ),
+                ),
+              )
+            ],
+          )),
+    );
   }
 
   Widget expenseListSection() {
@@ -114,6 +126,10 @@ class _PaymentListPageState extends State<PaymentListPage> {
       removeTop: true,
       child: ListView.separated(
         itemBuilder: (BuildContext context, int index) {
+          // return ClipRRect(
+          //   borderRadius: BorderRadius.all(Radius.circular(5)),
+          //   child: ExpenseTile(index: index),
+          // );
           //只有一项的时候，四个角全clip
           if (count == 1) {
             return ClipRRect(

@@ -41,34 +41,6 @@ class _PaymentDetailedPageState extends State<PaymentDetailedPage> {
     Get.delete<PaymentDetailedController>();
     super.dispose();
   }
-
-  Widget mainArea() {
-    return GetBuilder<PaymentDetailedController>(
-      assignId: true,
-      builder: (controller) {
-        return Container(
-          padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
-          child: MediaQuery.removePadding(
-            context: Get.context!,
-            removeTop: true,
-            child: ListView.separated(
-              itemBuilder: (BuildContext context, int index) {
-                return FeeDetailedTile();
-              },
-              separatorBuilder: (BuildContext context, int index) {
-                return Divider(
-                  thickness: 0,
-                  height: 0,
-                  color: Colors.transparent,
-                );
-              },
-              itemCount: 1,
-            ),
-          ),
-        );
-      },
-    );
-  }
 }
 
 class FeeDetailedTile extends StatefulWidget {

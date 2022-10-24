@@ -56,7 +56,7 @@ dependencies:
   fl_chart: ^0.55.2
   flutter_widget_from_html: ^0.8.5 #找到这个库是为了解析word格式的字串
   introduction_screen: ^3.0.2 #应用第一次启动的多页引导页，左右滑动的
-
+  sticky_headers: ^0.3.0+2
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -67,7 +67,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
-  build_runner:  ^2.1.10
+  build_runner: ^2.1.10
   json_serializable: ^6.2.0
   mockito: ^5.3.0
 # For information on the generic Dart part of this file, see the
@@ -112,8 +112,8 @@ flutter:
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
   assets:
-  - images/test.png
-  - images/one_piece.png
-  - images/access_alarms.xml
-  - assets/images/home/
-  - assets/images/
+    - images/test.png
+    - images/one_piece.png
+    - images/access_alarms.xml
+    - assets/images/home/
+    - assets/images/
