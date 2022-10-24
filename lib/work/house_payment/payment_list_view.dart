@@ -107,7 +107,7 @@ class _PaymentListPageState extends State<PaymentListPage> {
   }
 
   Widget expenseListSection() {
-    int count = 25;
+    int count = 3;
     return MediaQuery.removePadding(
       context: Get.context!,
       removeTop: true,
@@ -116,16 +116,16 @@ class _PaymentListPageState extends State<PaymentListPage> {
           if (index == 0) {
             return ClipRRect(
               borderRadius: BorderRadius.only(topLeft: Radius.circular(5), topRight: Radius.circular(5)),
-              child: ExpenseTile(),
+              child: ExpenseTile(index: index),
             );
           }
           if (index == count - 1) {
             return ClipRRect(
               borderRadius: BorderRadius.only(bottomLeft: Radius.circular(5), bottomRight: Radius.circular(5)),
-              child: ExpenseTile(),
+              child: ExpenseTile(index: index),
             );
           }
-          return ExpenseTile();
+          return ExpenseTile(index: index);
         },
         separatorBuilder: (BuildContext context, int index) {
           return Divider(
@@ -143,7 +143,8 @@ class _PaymentListPageState extends State<PaymentListPage> {
 }
 
 class ExpenseTile extends StatefulWidget {
-  const ExpenseTile({Key? key}) : super(key: key);
+  final int index;
+  const ExpenseTile({Key? key, required this.index}) : super(key: key);
 
   @override
   State<ExpenseTile> createState() => _ExpenseTileState();
@@ -154,55 +155,58 @@ class _ExpenseTileState extends State<ExpenseTile> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(PaymentDetailedPage());
+        Get.to(PaymentDetailedPage(), arguments: {'hero_tag': 'pay_detailed${widget.index}'});
       },
-      child: Container(
-        width: double.infinity,
-        color: randomColor(),
-        height: 60,
-        padding: const EdgeInsets.only(left: 20, right: 10, top: 10, bottom: 10),
-        child: Row(
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                LimitedBox(
-                  maxWidth: 200,
-                  child: Text(
-                    '小区',
-                    maxLines: 1,
-                    style: TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w500),
+      child: Hero(
+        tag: 'pay_detailed${widget.index}',
+        child: Container(
+          width: double.infinity,
+          color: randomColor(),
+          height: 60,
+          padding: const EdgeInsets.only(left: 20, right: 10, top: 10, bottom: 10),
+          child: Row(
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  LimitedBox(
+                    maxWidth: 200,
+                    child: Text(
+                      '小区',
+                      maxLines: 1,
+                      style: TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w500),
+                    ),
                   ),
-                ),
-                Spacer(),
-                LimitedBox(
-                  maxWidth: 200,
-                  child: Text(
-                    '1号楼' * 30,
-                    maxLines: 1,
-                    style: TextStyle(color: Color(0xFF666666), fontSize: 12),
+                  Spacer(),
+                  LimitedBox(
+                    maxWidth: 200,
+                    child: Text(
+                      '1号楼' * 30,
+                      maxLines: 1,
+                      style: TextStyle(color: Color(0xFF666666), fontSize: 12),
+                    ),
                   ),
-                ),
-              ],
-            ),
-            Spacer(),
-            Text(
-              '2875.36',
-              style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.w500),
-            ),
-            SizedBox(
-              width: 13.5,
-            ),
-            Icon(
-              Icons.arrow_forward_ios,
-              size: 12,
-            ),
-            // Image.asset(
-            //   'assets/images/home/arrows.png',
-            //   width: 12,
-            //   height: 12,
-            // )
-          ],
+                ],
+              ),
+              Spacer(),
+              Text(
+                '2875.36',
+                style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.w500),
+              ),
+              SizedBox(
+                width: 13.5,
+              ),
+              Icon(
+                Icons.arrow_forward_ios,
+                size: 12,
+              ),
+              // Image.asset(
+              //   'assets/images/home/arrows.png',
+              //   width: 12,
+              //   height: 12,
+              // )
+            ],
+          ),
         ),
       ),
     );

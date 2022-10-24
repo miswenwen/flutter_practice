@@ -1,10 +1,13 @@
 import 'package:get/get.dart';
 
 class PaymentDetailedController extends GetxController {
+  var heroTag;
   @override
   void onInit() {
     super.onInit();
     prepareDefaultData();
+    var map = Get.arguments;
+    heroTag = map['hero_tag'];
   }
 
   @override

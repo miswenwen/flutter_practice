@@ -20,7 +20,15 @@ class _PaymentDetailedPageState extends State<PaymentDetailedPage> {
       backgroundColor: Color(0xFFF7F7F7),
       body: WithToolbar(
         title: '账单详情',
-        child: FeeDetailedTile(),
+        child: GetBuilder<PaymentDetailedController>(
+          assignId: true,
+          builder: (controller) {
+            return Hero(
+              tag: controller.heroTag,
+              child: FeeDetailedTile(),
+            );
+          },
+        ),
       ),
     );
   }
