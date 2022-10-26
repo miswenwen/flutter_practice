@@ -11,12 +11,13 @@ import '../../log.dart';
  */
 class PermissionUtils {
   //应用第一次安装，权限status默认是denied
-  //自评估和工信部都要求，权限在调用的地方进行申请，而不是在进应用的时候一次性申请，故权限都是单个申请的。
+  //自评估和工信部两个要求
+  //1.权限在调用的地方进行申请，而不是在进应用的时候一次性申请，故权限都是单个申请的。
+  //2.权限申请的弹窗前要告知用户申请权限是用于什么功能的。故需要加额外的权限说明弹框。
 
-  //对于permission_controller, request()，给权限status==>granted,第一次不给权限status==>denied,第二次不给权限status==>permanentalDenied
-  //对于我们的业务逻辑，考虑要在申请权限弹框之前还要加个权限说明弹框，告诉申请权限是干嘛的
+  //对于permission_controller, request()这个api，给权限status==>granted,第一次不给权限status==>denied,第二次不给权限status==>permanentalDenied
   static Future<void> request(BuildContext context, Permission permission) async {
-    Log.e(await permission.status, tag: 'potter1111');
+    Log.e(await permission.status, tag: 'potter');
     if (await permission.status.isGranted) {
       //do nothing
     } else {
