@@ -37,7 +37,7 @@ class _PermissionTestState extends State<PermissionTest> {
           ),
           ElevatedButton(
             child: Text('request location'),
-            onPressed: () {
+            onPressed: () async {
               requestLocation();
             },
           ),
@@ -64,18 +64,32 @@ class _PermissionTestState extends State<PermissionTest> {
     Log.e(statuses.toString(), tag: 'potter');
   }
 
+  //I/flutter (10138): potter before---PermissionStatus.denied
+  // I/flutter (10138): potter---PermissionStatus.permanentlyDenied
+  // I/flutter (10138): potter after---PermissionStatus.denied
+  //为啥两种写法拿到status值不一样啊，这也太傻比了，去github的issues里看了下，提的最多的就是status的状态不对，兼容性这做的不行啊
   Future<void> requestStorage() async {
+    var status = await Permission.storage.status;
+    Log.e(status.toString(), tag: 'potter before');
     Map<Permission, PermissionStatus> statuses = await [
       Permission.storage,
     ].request().catchError((e) {
       Log.e(e, tag: 'potter');
     });
-    Log.e(statuses.toString(), tag: 'potter');
+    await Permission.storage.request().catchError((e) {});
+    Log.e(statuses[Permission.storage], tag: 'potter');
+    var status2 = await Permission.storage.status;
+    Log.e(status2.toString(), tag: 'potter after');
   }
 
   Future<void> requestLocation() async {
     //先请求权限，然后在判断定位是否打开
     var status = await Permission.location.status;
+    var status1 = await Permission.locationAlways.status;
+    var status2 = await Permission.locationWhenInUse.status;
+    Log.e('location' + status.toString(), tag: 'potter333');
+    Log.e('locationAlways' + status1.toString(), tag: 'potter333');
+    Log.e('locationWhenInUse' + status2.toString(), tag: 'potter333');
     if (status.isDenied) {
       Map<Permission, PermissionStatus> statuses = await [
         Permission.location,

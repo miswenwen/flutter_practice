@@ -40,7 +40,7 @@ dependencies:
   stacked: ^2.3.6
   json_annotation: ^4.5.0
   flutter_native_splash: ^2.2.0+1
-  permission_handler: ^9.2.0
+  permission_handler: ^10.2.0
   path_provider: ^2.0.10
   intl: ^0.17.0
   flutter_localizations:
@@ -58,6 +58,7 @@ dependencies:
   introduction_screen: ^3.0.2 #应用第一次启动的多页引导页，左右滑动的
   sticky_headers: ^0.3.0+2
   pull_to_refresh: ^2.0.0
+  baseflow_plugin_template: ^2.1.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
