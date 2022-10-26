@@ -57,6 +57,7 @@ dependencies:
   flutter_widget_from_html: ^0.8.5 #找到这个库是为了解析word格式的字串
   introduction_screen: ^3.0.2 #应用第一次启动的多页引导页，左右滑动的
   sticky_headers: ^0.3.0+2
+  pull_to_refresh: ^2.0.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

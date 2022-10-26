@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../work/house_payment/payment_list_view.dart';
+import '../permission_handler/permission_handler_learn.dart';
 import 'locale/messages.dart';
 
 //GetMaterialApp will create routes, inject them, inject translations, inject everything you need for route navigation.
@@ -33,7 +33,7 @@ class Learn extends StatelessWidget {
       // ),
       body: Container(
         alignment: Alignment.center,
-        child: PaymentListPage(),
+        child: PermissionTest(),
       ),
     );
   }
