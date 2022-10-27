@@ -16,9 +16,33 @@ class PermissionUtils {
   //2.权限申请的弹窗前要告知用户申请权限是用于什么功能的。故需要加额外的权限说明弹框。
 
   //对于permission_controller, request()这个api，给权限status==>granted,第一次不给权限status==>denied,第二次不给权限status==>permanentalDenied
+  //note1:注意permission_handler目前有坑，兼容性问题，以我的oppo手机为例，下面的方法申请权限，连点两次拒绝。
+
+  // 2022-10-26 11:29:50.171 31120-31213 flutter                 com.example.flutter_practice         I  potter before---PermissionStatus.denied
+  // 2022-10-26 11:29:53.985 31120-31213 flutter                 com.example.flutter_practice         I  potter request---PermissionStatus.denied
+  // 2022-10-26 11:29:54.003 31120-31213 flutter                 com.example.flutter_practice         I  potter after---PermissionStatus.denied
+  // 2022-10-26 11:29:56.880 31120-31213 flutter                 com.example.flutter_practice         I  potter before---PermissionStatus.denied
+  // 2022-10-26 11:29:58.103 31120-31213 flutter                 com.example.flutter_practice         I  potter request---PermissionStatus.permanentlyDenied
+  // 2022-10-26 11:29:58.125 31120-31213 flutter                 com.example.flutter_practice         I  potter after---PermissionStatus.denied
+  //两种写法拿到status值不一样，去github的issues里看了下，提的最多的就是status的状态不对，兼容性有问题,目前最新版本尚未fix(2022/10/26)
+  //也就是说暂时只有request()后返回的状态是正确的
+  //note2:测试的话，清除存储数据再进行测试。才能保证是没有使用痕迹的app的第一次启动。免得重装apk麻烦
+  /*
+    Future<void> requestStorage() async {
+    var status = await Permission.storage.status;
+    Log.e(status.toString(), tag: 'potter before');
+    PermissionStatus status2 = await Permission.storage.request().catchError((e) {});
+    Log.e(status2.toString(), tag: 'potter request');
+    var status3 = await Permission.storage.status;
+    Log.e(status3.toString(), tag: 'potter after');
+  }
+   */
+
+  //调用Sample：PermissionUtils.request(context, Permission.storage);
   static Future<void> request(BuildContext context, Permission permission) async {
-    Log.e(await permission.status, tag: 'potter');
-    if (await permission.status.isGranted) {
+    PermissionStatus status = await permission.status;
+    Log.e(status, tag: 'potter');
+    if (status.isGranted) {
       //do nothing
     } else {
       showDialog(
@@ -62,7 +86,7 @@ class PermissionUtils {
         ),
         TextButton(
           onPressed: () async {
-            PermissionStatus status = await permission.request();
+            PermissionStatus status = await permission.request().catchError((e) {});
             Log.e(status, tag: 'potter request result');
             if (status == PermissionStatus.granted) {
               //do nothing
@@ -90,8 +114,7 @@ class PermissionUtils {
   }
 
   static void permanentalDeniedTreatment() {
-    /*
-      好几种选择
+    /*好几种选择
       1.弹toast，提示---打开失败，请在设置-应用程序-一网统管中开启相关权限
       cmnt:最简单，cmcc的和包采用的该方式
       2.直接跳系统设置
