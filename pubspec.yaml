@@ -60,6 +60,7 @@ dependencies:
   pull_to_refresh: ^2.0.0
   baseflow_plugin_template: ^2.1.1
   fluttertoast: ^8.0.7 #提示
+  screen_capture_event: ^1.1.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

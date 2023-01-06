@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_practice/open_source/permission_handler/permission_util.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:screen_capture_event/screen_capture_event.dart';
 
 import '../../log.dart';
 
@@ -18,6 +19,8 @@ class PermissionTest extends StatefulWidget {
 }
 
 class _PermissionTestState extends State<PermissionTest> {
+  final ScreenCaptureEvent screenListener = ScreenCaptureEvent();
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -57,6 +60,14 @@ class _PermissionTestState extends State<PermissionTest> {
   void initState() {
     super.initState();
     //requestPermissions();
+    screenListener.preventAndroidScreenShot(true);
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    screenListener.preventAndroidScreenShot(false);
+    super.dispose();
   }
 
   //N个权限，直接申请，一次性申请
